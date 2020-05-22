@@ -3,33 +3,45 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C023EEB5247345C9008C4EAA /* StudentResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C023EEB4247345C9008C4EAA /* StudentResults.swift */; };
+		C023EEB72473491A008C4EAA /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C023EEB62473491A008C4EAA /* TableViewController.swift */; };
+		C023EEB92473492A008C4EAA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C023EEB82473492A008C4EAA /* LoginViewController.swift */; };
+		C023EEBB24734940008C4EAA /* InformationPostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C023EEBA24734940008C4EAA /* InformationPostingView.swift */; };
 		C05430C3246F431900A7D067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430C2246F431900A7D067 /* AppDelegate.swift */; };
 		C05430C5246F431900A7D067 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430C4246F431900A7D067 /* SceneDelegate.swift */; };
-		C05430C7246F431900A7D067 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430C6246F431900A7D067 /* ViewController.swift */; };
+		C05430C7246F431900A7D067 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430C6246F431900A7D067 /* MapViewController.swift */; };
 		C05430CA246F431900A7D067 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05430C8246F431900A7D067 /* Main.storyboard */; };
 		C05430CC246F431A00A7D067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05430CB246F431A00A7D067 /* Assets.xcassets */; };
 		C05430CF246F431A00A7D067 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05430CD246F431A00A7D067 /* LaunchScreen.storyboard */; };
 		C05430DA246F480B00A7D067 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430D9246F480B00A7D067 /* StudentLocation.swift */; };
 		C05430DE246F4B3400A7D067 /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430DD246F4B3400A7D067 /* ACL.swift */; };
-		C05430E0246F522200A7D067 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430DF246F522200A7D067 /* Student.swift */; };
+		C05430E0246F522200A7D067 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430DF246F522200A7D067 /* StudentInformation.swift */; };
+		C05B709624749CB700E7150A /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709524749CB700E7150A /* FacebookShare */; };
+		C05B709824749CB700E7150A /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709724749CB700E7150A /* FacebookCore */; };
+		C05B709A24749CB700E7150A /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709924749CB700E7150A /* FacebookGamingServices */; };
+		C05B709C24749CB700E7150A /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709B24749CB700E7150A /* FacebookLogin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C023EEB4247345C9008C4EAA /* StudentResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentResults.swift; sourceTree = "<group>"; };
+		C023EEB62473491A008C4EAA /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		C023EEB82473492A008C4EAA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C023EEBA24734940008C4EAA /* InformationPostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingView.swift; sourceTree = "<group>"; };
 		C05430BF246F431900A7D067 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05430C2246F431900A7D067 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C05430C4246F431900A7D067 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C05430C6246F431900A7D067 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C05430C6246F431900A7D067 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C05430C9246F431900A7D067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C05430CB246F431A00A7D067 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C05430CE246F431A00A7D067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C05430D0246F431A00A7D067 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C05430D9246F480B00A7D067 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		C05430DD246F4B3400A7D067 /* ACL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACL.swift; sourceTree = "<group>"; };
-		C05430DF246F522200A7D067 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		C05430DF246F522200A7D067 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +49,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C05B709C24749CB700E7150A /* FacebookLogin in Frameworks */,
+				C05B709A24749CB700E7150A /* FacebookGamingServices in Frameworks */,
+				C05B709624749CB700E7150A /* FacebookShare in Frameworks */,
+				C05B709824749CB700E7150A /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +112,10 @@
 		C05430D8246F434700A7D067 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C05430C6246F431900A7D067 /* ViewController.swift */,
+				C05430C6246F431900A7D067 /* MapViewController.swift */,
+				C023EEB62473491A008C4EAA /* TableViewController.swift */,
+				C023EEB82473492A008C4EAA /* LoginViewController.swift */,
+				C023EEBA24734940008C4EAA /* InformationPostingView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -104,6 +123,7 @@
 		C05430E1246F55AB00A7D067 /* Udacity Responses */ = {
 			isa = PBXGroup;
 			children = (
+				C023EEB4247345C9008C4EAA /* StudentResults.swift */,
 			);
 			path = "Udacity Responses";
 			sourceTree = "<group>";
@@ -118,7 +138,7 @@
 		C05430E3246F55BF00A7D067 /* Udacity Students */ = {
 			isa = PBXGroup;
 			children = (
-				C05430DF246F522200A7D067 /* Student.swift */,
+				C05430DF246F522200A7D067 /* StudentInformation.swift */,
 				C05430D9246F480B00A7D067 /* StudentLocation.swift */,
 			);
 			path = "Udacity Students";
@@ -148,6 +168,12 @@
 			dependencies = (
 			);
 			name = OnTheMap;
+			packageProductDependencies = (
+				C05B709524749CB700E7150A /* FacebookShare */,
+				C05B709724749CB700E7150A /* FacebookCore */,
+				C05B709924749CB700E7150A /* FacebookGamingServices */,
+				C05B709B24749CB700E7150A /* FacebookLogin */,
+			);
 			productName = OnTheMap;
 			productReference = C05430BF246F431900A7D067 /* OnTheMap.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +202,9 @@
 				Base,
 			);
 			mainGroup = C05430B6246F431900A7D067;
+			packageReferences = (
+				C05B709424749CB700E7150A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = C05430C0246F431900A7D067 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -203,8 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C05430C7246F431900A7D067 /* ViewController.swift in Sources */,
-				C05430E0246F522200A7D067 /* Student.swift in Sources */,
+				C023EEB92473492A008C4EAA /* LoginViewController.swift in Sources */,
+				C05430C7246F431900A7D067 /* MapViewController.swift in Sources */,
+				C05430E0246F522200A7D067 /* StudentInformation.swift in Sources */,
+				C023EEB5247345C9008C4EAA /* StudentResults.swift in Sources */,
+				C023EEBB24734940008C4EAA /* InformationPostingView.swift in Sources */,
+				C023EEB72473491A008C4EAA /* TableViewController.swift in Sources */,
 				C05430C3246F431900A7D067 /* AppDelegate.swift in Sources */,
 				C05430C5246F431900A7D067 /* SceneDelegate.swift in Sources */,
 				C05430DE246F4B3400A7D067 /* ACL.swift in Sources */,
@@ -404,6 +437,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C05B709424749CB700E7150A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C05B709524749CB700E7150A /* FacebookShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C05B709424749CB700E7150A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookShare;
+		};
+		C05B709724749CB700E7150A /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C05B709424749CB700E7150A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		C05B709924749CB700E7150A /* FacebookGamingServices */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C05B709424749CB700E7150A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookGamingServices;
+		};
+		C05B709B24749CB700E7150A /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C05B709424749CB700E7150A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C05430B7246F431900A7D067 /* Project object */;
 }
