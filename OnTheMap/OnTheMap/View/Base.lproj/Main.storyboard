@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,97 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="DLI-tB-DB2">
+                                <rect key="frame" x="128" y="102" width="158" height="203"/>
+                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Login to Udacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVZ-qn-J6X">
+                                <rect key="frame" x="112" y="313" width="190" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwO-JK-KCe">
+                                <rect key="frame" x="20" y="382" width="374" height="63"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="dI6-yI-kyJ"/>
+                                </constraints>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUy-SZ-5a2">
+                                <rect key="frame" x="20" y="453" width="374" height="63"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="AbU-IS-NE6"/>
+                                </constraints>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0p-E4-urI">
+                                <rect key="frame" x="20" y="524" width="374" height="63"/>
+                                <color key="backgroundColor" red="0.0" green="0.73636776208877563" blue="0.91892784833908081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="3IO-2d-C0l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Login"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmR-28-jc7">
+                                <rect key="frame" x="267" y="595" width="89" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Sign Up"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have any account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNa-Ym-7Kn">
+                                <rect key="frame" x="20" y="598" width="239" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13304328918457031" green="0.18210351467132568" blue="0.22618207335472107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iUy-SZ-5a2" secondAttribute="trailing" constant="20" id="10x-PO-D3E"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="q0p-E4-urI" secondAttribute="trailing" constant="20" id="58j-QI-4R8"/>
+                            <constraint firstItem="iUy-SZ-5a2" firstAttribute="top" secondItem="VwO-JK-KCe" secondAttribute="bottom" constant="8" id="7c0-YU-bD8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VwO-JK-KCe" secondAttribute="trailing" constant="20" id="Apy-Wt-N5g"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aNa-Ym-7Kn" secondAttribute="bottom" constant="237" id="Esg-a6-iNp"/>
+                            <constraint firstItem="VwO-JK-KCe" firstAttribute="top" secondItem="WVZ-qn-J6X" secondAttribute="bottom" constant="36" id="FBA-wO-fjP"/>
+                            <constraint firstItem="iUy-SZ-5a2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="H6u-AL-pRe"/>
+                            <constraint firstItem="q0p-E4-urI" firstAttribute="top" secondItem="iUy-SZ-5a2" secondAttribute="bottom" constant="8" id="I5L-GS-owz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RmR-28-jc7" secondAttribute="trailing" constant="58" id="Iii-lI-Xi6"/>
+                            <constraint firstItem="q0p-E4-urI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="JOq-sj-Pbb"/>
+                            <constraint firstItem="VwO-JK-KCe" firstAttribute="top" secondItem="WVZ-qn-J6X" secondAttribute="bottom" constant="36" id="OrV-HI-Sra"/>
+                            <constraint firstItem="VwO-JK-KCe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Rnd-QB-1WJ"/>
+                            <constraint firstItem="RmR-28-jc7" firstAttribute="top" secondItem="q0p-E4-urI" secondAttribute="bottom" constant="8" id="YQX-OF-GfC"/>
+                            <constraint firstItem="RmR-28-jc7" firstAttribute="leading" secondItem="aNa-Ym-7Kn" secondAttribute="trailing" constant="8" id="aYo-sX-r5r"/>
+                            <constraint firstItem="DLI-tB-DB2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cHi-2E-Tbe"/>
+                            <constraint firstItem="DLI-tB-DB2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="128" id="cYJ-vT-v9A"/>
+                            <constraint firstItem="iUy-SZ-5a2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eRe-yP-M7J"/>
+                            <constraint firstItem="DLI-tB-DB2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="58" id="eSA-g1-oAJ"/>
+                            <constraint firstItem="aNa-Ym-7Kn" firstAttribute="bottom" secondItem="RmR-28-jc7" secondAttribute="bottom" id="fLb-iL-uqM"/>
+                            <constraint firstItem="WVZ-qn-J6X" firstAttribute="top" secondItem="DLI-tB-DB2" secondAttribute="bottom" constant="8" id="hsE-ga-Lsm"/>
+                            <constraint firstItem="aNa-Ym-7Kn" firstAttribute="leading" secondItem="q0p-E4-urI" secondAttribute="leading" id="sa5-IG-pRl"/>
+                            <constraint firstItem="aNa-Ym-7Kn" firstAttribute="top" secondItem="q0p-E4-urI" secondAttribute="bottom" constant="11" id="u2j-db-X8o"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DLI-tB-DB2" secondAttribute="bottom" constant="557" id="vwn-yk-y2s"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="118.52678571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo-u" width="62" height="62"/>
+    </resources>
 </document>
