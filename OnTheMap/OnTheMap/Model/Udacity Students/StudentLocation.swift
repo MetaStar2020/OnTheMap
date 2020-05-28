@@ -10,6 +10,11 @@ import Foundation
 
 class StudentLocation {
     
+    struct Auth {
+        static var accountKey = ""
+        static var sessionId = ""
+    }
+    
     //MARK: - URLS
     enum EndPoints {
         static let base = "https://onthemap-api.udacity.com/v1"
@@ -89,8 +94,71 @@ class StudentLocation {
         task.resume()
     }
     
+    //MARK: -I am here!
+    class func createSessionId(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+        let body = SessionRequest(udacity: Student(username: username, password: password))
+          taskForPOSTRequest(url: EndPoints.session.url, responseType: SessionResponse.self, body: body) { response, error in
+              if let response = response {
+                Auth.sessionId = response.session.id
+                Auth.accountKey = response.account.key
+                print(Auth.sessionId)
+                print(Auth.accountKey)
+                  completion(true, nil)
+              } else {
+                print("no SessionResponse")
+                  completion(false, nil)
+              }
+          }
+      }
+    
+    class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try! JSONEncoder().encode(body)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        if responseType is SessionResponse.Type {
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            print("addedValue")
+        }
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
+            }
+            
+            let range = {5..<data.count}
+            let newData = data.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
+            print(String(data: newData, encoding: .utf8)!)
+            //NOTE: if account is invalid this will be the response: {"status":403,"error":"Account not found or invalid credentials."}
+            
+            let decoder = JSONDecoder()
+            do {
+                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                DispatchQueue.main.async {
+                    completion(responseObject, nil)
+                }
+            } catch {
+                /*do {
+                    let errorResponse = try decoder.decode(TMDBResponse.self, from: data) as Error
+                    DispatchQueue.main.async {
+                        completion(nil, errorResponse)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
+                }*/
+            }
+        }
+        task.resume()
+    }
+
+    /*
     class func createSessionId() {
         //Method: https://onthemap-api.udacity.com/v1/session
+        //request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: .utf8)
         
         var request = URLRequest(url: EndPoints.session.url)
         request.httpMethod = "POST"
@@ -109,6 +177,7 @@ class StudentLocation {
         }
         task.resume()
     }
+ */
     
     class func getPublicUserData(userId: String) {
         //Method Name: https://onthemap-api.udacity.com/v1/users/<user_id>
