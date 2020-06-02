@@ -22,6 +22,15 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //need more tweaking here!  hint: maybe I need the delegate? 
+        //userName.position(from: userName.beginningOfDocument, offset: 5)
+        if let newPosition = userName.position(from: userName.beginningOfDocument, offset: 15) {
+
+            userName.selectedTextRange = userName.textRange(from: newPosition, to: newPosition)
+        }
+        userPassword.position(from: userName.beginningOfDocument, offset: 5)
+        // check: textField.textRange(from: , to: ) and https://stackoverflow.com/a/34922332
+        
         userName.text = ""
         userPassword.text = ""
     }
