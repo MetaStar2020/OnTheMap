@@ -42,12 +42,14 @@ class LoginViewController: UIViewController {
     
     func handleSessionResponse(success: Bool, error: Error?) {
         //setLoggingIn(false)
-        if success {
+        //skip handling to test app
+        performSegue(withIdentifier: "completeLogin", sender: nil)
+        /*if success {
             print("Session succeeded! - completeLogin is the next step")
-            //performSegue(withIdentifier: "completeLogin", sender: nil)
+            performSegue(withIdentifier: "completeLogin", sender: nil)
         } else {
             print("Session failed")
             //showLoginFailure(message: error?.localizedDescription ?? "")
-        }
+        }*/
     }
 }
