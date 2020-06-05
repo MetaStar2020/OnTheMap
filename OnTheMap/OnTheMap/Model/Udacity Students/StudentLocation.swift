@@ -43,7 +43,96 @@ class StudentLocation {
     }
  
     //MARK: - class functions
-    class func getStudentLocation() {
+    
+    class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                    print("no data was in GET")
+                }
+                return
+            }
+            let decoder = JSONDecoder()
+            do {
+                print("this is the raw data in GET\(String(data: data, encoding: .utf8)!)")
+                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                DispatchQueue.main.async {
+                    completion(responseObject, nil)
+                    print("responseObject is\(responseObject)")
+                }
+            } catch {
+                do {
+                    print("responseObject was not decoded")
+                    let errorResponse = try decoder.decode(StudentResponse.self, from: data) as Error
+                    DispatchQueue.main.async {
+                        completion(nil, errorResponse)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
+                }
+            }
+        }
+        task.resume()
+        
+        return task
+    }
+    
+    class func getStudentLocation(limit: Int? = nil, skip: Int? = nil, order: String? = nil, uniqueKey: String? = nil, completion: @escaping ([StudentInformation], Error?) -> Void) {
+        //Optional Parameters: limit(Number), skip(Number), order(String), uniqueKey(String)[aka UserID]
+        //let query = EndPoints.order
+        let query = createQuery(limit: limit, skip: skip, order: order, uniqueKey: uniqueKey)
+        taskForGETRequest(url: EndPoints.getStudentLocation(query).url, responseType: StudentResults.self) { response, error in
+            if let response = response {
+                completion(response.results, nil)
+                print("getStudentLocation results: \(response.results)")
+            } else {
+                completion([], error)
+            }
+        }
+    }
+    
+    class func createQuery(limit: Int?, skip: Int?, order: String?, uniqueKey: String?) -> String {
+        
+        var query = ""
+        var next = false
+        
+        //add '?' symbol to the query only if not nil
+        if limit != nil || skip != nil || order != nil || uniqueKey != nil {
+            query += "?"
+        }
+        
+        if let limit = limit {
+            query += "limit=\(limit)"
+            next = true
+        }
+        
+        if let skip = skip {
+            if next == true { query += "&" }
+            query += "skip=\(skip)"
+            next = true
+        }
+        
+        if let order = order {
+            if next == true { query += "&" }
+            query += "order=\(order)"
+            next = true
+        }
+        
+        if let uniqueKey = uniqueKey {
+            if next == true { query += "&" }
+            query += "uniqueKey=\(uniqueKey)"
+            next = true
+        }
+        
+        print("StudentLocation query is \(query)")
+        
+        return query
+    }
+    
+    /*class func getStudentLocation() {
         //Optional Parameters: limit(Number), skip(Number), order(String), uniqueKey(String)[aka UserID]
         //Method: https://onthemap-api.udacity.com/v1/StudentLocation
         
@@ -56,7 +145,7 @@ class StudentLocation {
           print(String(data: data!, encoding: .utf8)!)
         }
         task.resume()
-    }
+    }*/
     
     class func postStudentLocation() {
         //Method: https://onthemap-api.udacity.com/v1/StudentLocation
