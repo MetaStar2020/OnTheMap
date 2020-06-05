@@ -37,8 +37,8 @@ class MapViewController: UIViewController {
             
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.
-            let lat = CLLocationDegrees(Double(dictionary.latitude))
-            let long = CLLocationDegrees(Double(dictionary.longitude))
+            let lat = CLLocationDegrees(Double(dictionary.latitude) ?? 0.0 )
+            let long = CLLocationDegrees(Double(dictionary.longitude) ?? 0.0 )
             
             // The lat and long are used to create a CLLocationCoordinates2D instance.
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)

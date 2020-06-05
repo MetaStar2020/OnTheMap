@@ -15,10 +15,12 @@ struct StudentInformation: Codable {
     let lastName: String
     let mapString: String
     let mediaURL: String
-    let latitude: Float
-    let longitude: Float
-    let createdAt: Date
-    let updatedAt: Date
+    let latitude: String
+    let longitude: String
+    let createdAt: String
+    //Date
+    let updatedAt: String
+    //Date
     //let ACL: ACL
     
     enum CodingKeys: String, CodingKey {
