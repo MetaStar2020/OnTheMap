@@ -146,10 +146,24 @@
                     <view key="view" contentMode="scaleToFill" id="NR0-qJ-Ciy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ngF-6J-Wu5">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ngF-6J-Wu5" firstAttribute="centerX" secondItem="NR0-qJ-Ciy" secondAttribute="centerX" id="9bn-tc-aBB"/>
+                            <constraint firstItem="ngF-6J-Wu5" firstAttribute="leading" secondItem="hiq-x0-XVE" secondAttribute="leading" id="szW-RO-i8K"/>
+                            <constraint firstItem="ngF-6J-Wu5" firstAttribute="top" secondItem="hiq-x0-XVE" secondAttribute="top" id="thS-eu-PXN"/>
+                            <constraint firstItem="ngF-6J-Wu5" firstAttribute="bottom" secondItem="hiq-x0-XVE" secondAttribute="bottom" id="xmP-ip-b7B"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hiq-x0-XVE"/>
                     </view>
                     <navigationItem key="navigationItem" id="EsF-gA-MxY"/>
+                    <connections>
+                        <outlet property="mapView" destination="ngF-6J-Wu5" id="0QO-Nq-Ngy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3T-UQ-OPd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
