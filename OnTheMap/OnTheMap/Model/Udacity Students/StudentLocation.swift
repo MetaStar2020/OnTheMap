@@ -56,9 +56,12 @@ class StudentLocation {
             let decoder = JSONDecoder()
             do {
                 print("this is the raw data in GET\(String(data: data, encoding: .utf8)!)")
-                let range = {5..<data.count}
+                /*let range = {5..<data.count}
                 let newData = data.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
-                let responseObject = try decoder.decode(ResponseType.self, from: newData)
+                
+                print("this is the subset data in GET\(String(data: newData, encoding: .utf8)!)")*/
+                
+                let responseObject = try decoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
                     completion(responseObject, nil)
                     print("responseObject is\(responseObject)")
@@ -66,12 +69,15 @@ class StudentLocation {
             } catch {
                 do {
                     print("responseObject was not decoded")
+                     print(error)
                     let errorResponse = try decoder.decode(StudentResponse.self, from: data) as Error
+                    
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
                 } catch {
                     DispatchQueue.main.async {
+                       
                         completion(nil, error)
                     }
                 }
