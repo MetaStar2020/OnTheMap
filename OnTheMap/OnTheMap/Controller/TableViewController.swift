@@ -10,15 +10,47 @@ import Foundation
 import UIKit
 
 
-class TableViewController: UITableViewController {
+class TableViewController: UIViewController {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+    //MARK: - Outlets
+    
+    @IBOutlet var tableView: UITableView!
+    
+    //MARK: - Properties: Variables and Constants
+    
+    let OTMCellID = "OTMTableCell"
+    
+    // MARK: - View Life Cycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        self.tableView.reloadData()
     }
+        
+}
+
+extension TableViewController: UITableViewDelegate, UITableViewDataSource {
+    // MARK: - Required functions for UITableViewDataSource
     
-    /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }*/
-    
-    
+    // Return the number of rows for the table.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return StudentLocationModel.studentLocations.count
+    }
+
+    // Provide a cell object for each row.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       // Fetch a cell of the appropriate type.
+       let cell = tableView.dequeueReusableCell(withIdentifier: OTMCellID , for: indexPath)
+        print(indexPath)
+       
+       // Configure the cell’s contents.
+        cell.imageView!.image = UIImage(named: "icon_pin")
+        cell.textLabel!.text = StudentLocationModel.studentLocations[indexPath.row].firstName + " " + StudentLocationModel.studentLocations[indexPath.row].lastName
+           
+       return cell
+    }
 }
