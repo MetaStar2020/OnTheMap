@@ -53,4 +53,12 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
            
        return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let mediaURL = URL(string: StudentLocationModel.studentLocations[indexPath.row].mediaURL){
+                UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
+            } else {
+            //showAlert(ofType: .incorrectURLFormat, message: "Media contains a wrong URL format")
+        }
+    }
 }
