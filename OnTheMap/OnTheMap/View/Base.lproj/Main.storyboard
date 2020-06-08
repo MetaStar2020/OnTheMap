@@ -25,7 +25,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwO-JK-KCe">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwO-JK-KCe" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
                                 <rect key="frame" x="20" y="382" width="374" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -35,7 +35,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUy-SZ-5a2">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUy-SZ-5a2" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
                                 <rect key="frame" x="20" y="453" width="374" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
