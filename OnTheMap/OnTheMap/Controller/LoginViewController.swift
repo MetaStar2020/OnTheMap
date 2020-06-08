@@ -12,9 +12,13 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // Outlets
-    @IBOutlet weak var userName: UITextField!
+    //@IBOutlet weak var userName: UITextField!
+    //@IBOutlet weak var userPassword: UITextField!
     
-    @IBOutlet weak var userPassword: UITextField!
+    @IBOutlet weak var userName: TextField!
+    @IBOutlet weak var userPassword: TextField!
+    
+    
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
@@ -22,14 +26,14 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //need more tweaking here!  hint: maybe I need the delegate? 
+        /*//need more tweaking here!  hint: maybe I need the delegate?
         //userName.position(from: userName.beginningOfDocument, offset: 5)
         if let newPosition = userName.position(from: userName.beginningOfDocument, offset: 15) {
 
             userName.selectedTextRange = userName.textRange(from: newPosition, to: newPosition)
         }
         userPassword.position(from: userName.beginningOfDocument, offset: 5)
-        // check: textField.textRange(from: , to: ) and https://stackoverflow.com/a/34922332
+        // check: textField.textRange(from: , to: ) and https://stackoverflow.com/a/34922332 */
         
         userName.text = ""
         userPassword.text = ""
@@ -51,5 +55,18 @@ class LoginViewController: UIViewController {
             print("Session failed")
             //showLoginFailure(message: error?.localizedDescription ?? "")
         }*/
+    }
+}
+
+class TextField: UITextField {
+    let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 5)
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
+    }
+    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: padding)
     }
 }
