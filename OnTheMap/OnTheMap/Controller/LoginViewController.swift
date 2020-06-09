@@ -42,6 +42,10 @@ class LoginViewController: UIViewController {
         StudentLocation.createSessionId(username: userName.text ?? "", password: userPassword.text ?? "", completion: handleSessionResponse(success:error:))
     }
     
+    @IBAction func signUpTapped(_ sender: Any) {
+        UIApplication.shared.open(StudentLocation.EndPoints.webAuth.url, options: [:], completionHandler: nil)
+    }
+    
     func handleSessionResponse(success: Bool, error: Error?) {
         //setLoggingIn(false)
         //skip handling to test app

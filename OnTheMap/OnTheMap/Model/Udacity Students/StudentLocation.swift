@@ -25,6 +25,7 @@ class StudentLocation {
         case updateStudentLocation(String)
         case session
         case getPublicUserData(String)
+        case webAuth
         
         var stringValue: String {
             switch self {
@@ -32,7 +33,8 @@ class StudentLocation {
                 case .postStudentLocation: return EndPoints.base + "/StudentLocation"
                 case .updateStudentLocation(let objectId): return EndPoints.base + "/\(objectId)"
                 case .session: return EndPoints.base + "/session"
-            case .getPublicUserData(let userId): return EndPoints.base + "/users/\(userId)"
+                case .getPublicUserData(let userId): return EndPoints.base + "/users/\(userId)"
+                case .webAuth: return "https://auth.udacity.com/sign-up."
             }
         }
         
