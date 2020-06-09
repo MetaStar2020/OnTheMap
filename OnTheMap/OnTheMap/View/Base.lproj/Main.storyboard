@@ -68,6 +68,9 @@
                                 <rect key="frame" x="231" y="598" width="111" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ma0-5O-puU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.13304328918457031" green="0.18210351467132568" blue="0.22618207335472107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
