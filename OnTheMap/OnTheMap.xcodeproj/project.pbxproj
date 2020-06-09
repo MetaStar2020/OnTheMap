@@ -22,12 +22,14 @@
 		C05430DA246F480B00A7D067 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430D9246F480B00A7D067 /* StudentLocation.swift */; };
 		C05430DE246F4B3400A7D067 /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430DD246F4B3400A7D067 /* ACL.swift */; };
 		C05430E0246F522200A7D067 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430DF246F522200A7D067 /* StudentInformation.swift */; };
+		C0593D34249037910033D7D8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0593D33249037910033D7D8 /* UIViewController+Extension.swift */; };
 		C05B709624749CB700E7150A /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709524749CB700E7150A /* FacebookShare */; };
 		C05B709824749CB700E7150A /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709724749CB700E7150A /* FacebookCore */; };
 		C05B709A24749CB700E7150A /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709924749CB700E7150A /* FacebookGamingServices */; };
 		C05B709C24749CB700E7150A /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709B24749CB700E7150A /* FacebookLogin */; };
 		C060DA65248AEB4200CFA4A9 /* StudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060DA64248AEB4200CFA4A9 /* StudentResponse.swift */; };
 		C060DA67248AF82100CFA4A9 /* StudentLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */; };
+		C0802ADB248F09CB005DDD2C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802ADA248F09CB005DDD2C /* TextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +50,10 @@
 		C05430D9246F480B00A7D067 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		C05430DD246F4B3400A7D067 /* ACL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACL.swift; sourceTree = "<group>"; };
 		C05430DF246F522200A7D067 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		C0593D33249037910033D7D8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C060DA64248AEB4200CFA4A9 /* StudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentResponse.swift; sourceTree = "<group>"; };
 		C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationModel.swift; sourceTree = "<group>"; };
+		C0802ADA248F09CB005DDD2C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 				C023EEB62473491A008C4EAA /* TableViewController.swift */,
 				C023EEB82473492A008C4EAA /* LoginViewController.swift */,
 				C023EEBA24734940008C4EAA /* InformationPostingView.swift */,
+				C0593D33249037910033D7D8 /* UIViewController+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 			children = (
 				C05430DD246F4B3400A7D067 /* ACL.swift */,
 				C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */,
+				C0802ADA248F09CB005DDD2C /* TextField.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -244,9 +250,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0593D34249037910033D7D8 /* UIViewController+Extension.swift in Sources */,
 				C023EEB92473492A008C4EAA /* LoginViewController.swift in Sources */,
 				C05430C7246F431900A7D067 /* MapViewController.swift in Sources */,
 				C060DA67248AF82100CFA4A9 /* StudentLocationModel.swift in Sources */,
+				C0802ADB248F09CB005DDD2C /* TextField.swift in Sources */,
 				C05430E0246F522200A7D067 /* StudentInformation.swift in Sources */,
 				C023EEB5247345C9008C4EAA /* StudentResults.swift in Sources */,
 				C023EEBB24734940008C4EAA /* InformationPostingView.swift in Sources */,
