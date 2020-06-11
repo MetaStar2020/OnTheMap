@@ -61,6 +61,9 @@ class StudentLocation {
                 }
                 return
             }
+            
+            var newData = data
+            
             let decoder = JSONDecoder()
             do {
                 //print("this is the raw data in GET\(String(data: data, encoding: .utf8)!)")
@@ -68,21 +71,16 @@ class StudentLocation {
                 if responseType is PublicUserInfoResponse.Type {
                     print("responseType is PublicUserInfoResponse")
                     let range = {5..<data.count}
-                    let newData = data.subdata(in: range()) // subset response data! TO CHECK: Range<Int> in documentation
-            
-                    let responseObject = try decoder.decode(ResponseType.self, from: newData)
-                    DispatchQueue.main.async {
-                        completion(responseObject, nil)
-                        //print("responseObject is\(responseObject)")
-                    }
-                } else {
-                
-                    let responseObject = try decoder.decode(ResponseType.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(responseObject, nil)
-                        //print("responseObject is\(responseObject)")
-                    }
+                    newData = data.subdata(in: range()) // subset response data! TO CHECK: Range<Int> in documentation
+                    print(String(data: newData, encoding: .utf8)!)
                 }
+                
+                let responseObject = try decoder.decode(ResponseType.self, from: newData)
+                    DispatchQueue.main.async {
+                        completion(responseObject, nil)
+                        //print("responseObject is\(responseObject)")
+                    }
+                
             } catch {
                 do {
                     print("responseObject was not decoded")
@@ -243,20 +241,19 @@ class StudentLocation {
                 }
                 return
             }
+            var newData = data
             
             if responseType is SessionResponse.Type {
                 let range = {5..<data.count}
-                _ = data.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
+                newData = data.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
                 print("data is ranged for session response")
-                //print(String(data: newData, encoding: .utf8)!)
+                print(String(data: newData, encoding: .utf8)!)
                 //NOTE: if account is invalid this will be the response: {"status":403,"error":"Account not found or invalid credentials."}
-            } /*else {
-                let newData = data
-            }*/
+            }
             
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                let responseObject = try decoder.decode(ResponseType.self, from: newData)
                 DispatchQueue.main.async {
                     completion(responseObject, nil)
                 }
@@ -308,9 +305,9 @@ class StudentLocation {
         taskForGETRequest(url: EndPoints.getPublicUserData(userId).url, responseType: PublicUserInfoResponse.self) { response, error in
             if let response = response {
                 completion(true, nil)
-                print("getPublicUserData: \(response.user)")
-                PublicUserInfo.firstName = response.user.firstName
-                PublicUserInfo.lastName = response.user.lastName
+                print("getPublicUserData: \(response)")
+                PublicUserInfo.firstName = response.firstName
+                PublicUserInfo.lastName = response.lastName
             } else {
                 completion(false, error)
             }
