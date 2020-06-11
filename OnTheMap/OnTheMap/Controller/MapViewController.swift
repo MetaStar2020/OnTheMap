@@ -26,8 +26,8 @@ class MapViewController: UIViewController {
         // data that you can download from parse.
         let _ = StudentLocation.getStudentLocation() { students, error in
             StudentLocationModel.studentLocations = students
-            print("StudentModel: \(String(describing: StudentLocationModel.studentLocations))")
-            print("StudentMOdel error: \(String(describing: error))")
+            //print("StudentModel: \(String(describing: StudentLocationModel.studentLocations))")
+            //print("StudentMOdel error: \(String(describing: error))")
             self.setUpPins() //since the download is async - set up needs to be here
         }
     }
@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
             
             // The lat and long are used to create a CLLocationCoordinates2D instance.
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            print("coordinate: \(String(describing: coordinate))")
+            //print("coordinate: \(String(describing: coordinate))")
             
             let first = dictionary.firstName
             let last = dictionary.lastName
@@ -66,7 +66,7 @@ class MapViewController: UIViewController {
             // Finally we place the annotation in an array of annotations.
             annotations.append(annotation)
             
-            print("annotation: \(String(describing: annotation.title))")
+            //print("annotation: \(String(describing: annotation.title))")
         }
         
         // When the array is complete, we add the annotations to the map.

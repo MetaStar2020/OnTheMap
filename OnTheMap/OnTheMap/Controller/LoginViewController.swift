@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
     @IBAction func logginTapped(_ sender: Any) {
         //setLoggingIn(true)
         StudentLocation.createSessionId(username: userName.text ?? "", password: userPassword.text ?? "", completion: handleSessionResponse(success:error:))
+        print(StudentLocation.Auth.sessionId)
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
@@ -49,14 +50,25 @@ class LoginViewController: UIViewController {
     func handleSessionResponse(success: Bool, error: Error?) {
         //setLoggingIn(false)
         //skip handling to test app
-        performSegue(withIdentifier: "completeLogin", sender: nil)
-        /*if success {
+        if success {
             print("Session succeeded! - completeLogin is the next step")
+            
+            StudentLocation.getPublicUserData(userId: StudentLocation.Auth.accountKey) { success, error in
+                if success {
+                    //handle success
+                    print(StudentLocation.PublicUserInfo.firstName)
+                } else {
+                    //handle error
+                    print("error with getPublicUserData")
+                }
+                
+            }
             performSegue(withIdentifier: "completeLogin", sender: nil)
+            
         } else {
             print("Session failed")
             //showLoginFailure(message: error?.localizedDescription ?? "")
-        }*/
+        }
     }
 }
 

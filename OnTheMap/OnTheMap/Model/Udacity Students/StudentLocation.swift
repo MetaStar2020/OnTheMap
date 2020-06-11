@@ -8,11 +8,17 @@
 
 import Foundation
 
+
 class StudentLocation {
     
     struct Auth {
         static var accountKey = ""
         static var sessionId = ""
+    }
+    
+    struct PublicUserInfo { //Udacity created an API with random user info to protect privacy
+        static var firstName = ""
+        static var lastName = ""
     }
     
     //MARK: - URLS
@@ -57,16 +63,25 @@ class StudentLocation {
             }
             let decoder = JSONDecoder()
             do {
-                print("this is the raw data in GET\(String(data: data, encoding: .utf8)!)")
-                /*let range = {5..<data.count}
-                let newData = data.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
+                //print("this is the raw data in GET\(String(data: data, encoding: .utf8)!)")
                 
-                print("this is the subset data in GET\(String(data: newData, encoding: .utf8)!)")*/
+                if responseType is PublicUserInfoResponse.Type {
+                    print("responseType is PublicUserInfoResponse")
+                    let range = {5..<data.count}
+                    let newData = data.subdata(in: range()) // subset response data! TO CHECK: Range<Int> in documentation
+            
+                    let responseObject = try decoder.decode(ResponseType.self, from: newData)
+                    DispatchQueue.main.async {
+                        completion(responseObject, nil)
+                        //print("responseObject is\(responseObject)")
+                    }
+                } else {
                 
-                let responseObject = try decoder.decode(ResponseType.self, from: data)
-                DispatchQueue.main.async {
-                    completion(responseObject, nil)
-                    print("responseObject is\(responseObject)")
+                    let responseObject = try decoder.decode(ResponseType.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(responseObject, nil)
+                        //print("responseObject is\(responseObject)")
+                    }
                 }
             } catch {
                 do {
@@ -97,7 +112,7 @@ class StudentLocation {
         taskForGETRequest(url: EndPoints.getStudentLocation(query).url, responseType: StudentResults.self) { response, error in
             if let response = response {
                 completion(response.results, nil)
-                print("getStudentLocation results: \(response.results)")
+                //print("getStudentLocation results: \(response.results)")
             } else {
                 completion([], error)
             }
@@ -198,6 +213,7 @@ class StudentLocation {
         let body = SessionRequest(udacity: Student(username: username, password: password))
           taskForPOSTRequest(url: EndPoints.session.url, responseType: SessionResponse.self, body: body) { response, error in
               if let response = response {
+                print("session succeeded, now adding to Auth...")
                 Auth.sessionId = response.session.id
                 Auth.accountKey = response.account.key
                 print(Auth.sessionId)
@@ -222,15 +238,21 @@ class StudentLocation {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
+                    print("error in data its nil")
                     completion(nil, error)
                 }
                 return
             }
             
-            let range = {5..<data.count}
-            let newData = data.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
-            print(String(data: newData, encoding: .utf8)!)
-            //NOTE: if account is invalid this will be the response: {"status":403,"error":"Account not found or invalid credentials."}
+            if responseType is SessionResponse.Type {
+                let range = {5..<data.count}
+                _ = data.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
+                print("data is ranged for session response")
+                //print(String(data: newData, encoding: .utf8)!)
+                //NOTE: if account is invalid this will be the response: {"status":403,"error":"Account not found or invalid credentials."}
+            } /*else {
+                let newData = data
+            }*/
             
             let decoder = JSONDecoder()
             do {
@@ -239,6 +261,7 @@ class StudentLocation {
                     completion(responseObject, nil)
                 }
             } catch {
+                print("error in decoding data")
                 /*do {
                     let errorResponse = try decoder.decode(TMDBResponse.self, from: data) as Error
                     DispatchQueue.main.async {
@@ -278,22 +301,25 @@ class StudentLocation {
     }
  */
     
-    class func getPublicUserData(userId: String) {
+    class func getPublicUserData(userId: String, completion: @escaping (Bool, Error?) -> Void) {
         //Method Name: https://onthemap-api.udacity.com/v1/users/<user_id>
         //let request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/users/3903878747")!)
         
-        let request = URLRequest(url: EndPoints.getPublicUserData(userId).url)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-          if error != nil { // Handle error...
-              return
-          }
-            let range = {5..<data!.count}
-          let newData = data?.subdata(in: range()) /* subset response data! */
-          print(String(data: newData!, encoding: .utf8)!)
+        taskForGETRequest(url: EndPoints.getPublicUserData(userId).url, responseType: PublicUserInfoResponse.self) { response, error in
+            if let response = response {
+                completion(true, nil)
+                print("getPublicUserData: \(response.user)")
+                PublicUserInfo.firstName = response.user.firstName
+                PublicUserInfo.lastName = response.user.lastName
+            } else {
+                completion(false, error)
+            }
         }
-        task.resume()
+        //let range = {5..<data!.count}
+        //let newData = data?.subdata(in: range()) /* subset response data! */
+        //print(String(data: newData!, encoding: .utf8)!)
     }
+    
     
     class func logout(completion: @escaping () -> Void) {
         // Method: https://onthemap-api.udacity.com/v1/session
