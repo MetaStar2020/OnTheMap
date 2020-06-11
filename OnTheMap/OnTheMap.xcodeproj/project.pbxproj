@@ -32,6 +32,8 @@
 		C060DA67248AF82100CFA4A9 /* StudentLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */; };
 		C06F80E524919A23009F1651 /* StudentPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F80E424919A23009F1651 /* StudentPin.swift */; };
 		C06F80E72491AF33009F1651 /* PublicUserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F80E62491AF33009F1651 /* PublicUserInfoResponse.swift */; };
+		C0734B662492D7A000C7A925 /* StudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0734B652492D7A000C7A925 /* StudentLocationResponse.swift */; };
+		C0734B682492E0BA00C7A925 /* StudentLocationUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */; };
 		C0802ADB248F09CB005DDD2C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802ADA248F09CB005DDD2C /* TextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationModel.swift; sourceTree = "<group>"; };
 		C06F80E424919A23009F1651 /* StudentPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentPin.swift; sourceTree = "<group>"; };
 		C06F80E62491AF33009F1651 /* PublicUserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserInfoResponse.swift; sourceTree = "<group>"; };
+		C0734B652492D7A000C7A925 /* StudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationResponse.swift; sourceTree = "<group>"; };
+		C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationUpdateResponse.swift; sourceTree = "<group>"; };
 		C0802ADA248F09CB005DDD2C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +151,8 @@
 				C053D2BC247EF4180048A437 /* SessionResponse.swift */,
 				C060DA64248AEB4200CFA4A9 /* StudentResponse.swift */,
 				C06F80E62491AF33009F1651 /* PublicUserInfoResponse.swift */,
+				C0734B652492D7A000C7A925 /* StudentLocationResponse.swift */,
+				C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */,
 			);
 			path = "Udacity Responses";
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				C0593D34249037910033D7D8 /* UIViewController+Extension.swift in Sources */,
 				C023EEB92473492A008C4EAA /* LoginViewController.swift in Sources */,
 				C05430C7246F431900A7D067 /* MapViewController.swift in Sources */,
+				C0734B662492D7A000C7A925 /* StudentLocationResponse.swift in Sources */,
 				C060DA67248AF82100CFA4A9 /* StudentLocationModel.swift in Sources */,
 				C0802ADB248F09CB005DDD2C /* TextField.swift in Sources */,
 				C06F80E524919A23009F1651 /* StudentPin.swift in Sources */,
@@ -271,6 +278,7 @@
 				C023EEB72473491A008C4EAA /* TableViewController.swift in Sources */,
 				C06F80E72491AF33009F1651 /* PublicUserInfoResponse.swift in Sources */,
 				C05430C3246F431900A7D067 /* AppDelegate.swift in Sources */,
+				C0734B682492E0BA00C7A925 /* StudentLocationUpdateResponse.swift in Sources */,
 				C0593D3624903FA50033D7D8 /* AddLocationViewController.swift in Sources */,
 				C05430C5246F431900A7D067 /* SceneDelegate.swift in Sources */,
 				C05430DE246F4B3400A7D067 /* ACL.swift in Sources */,

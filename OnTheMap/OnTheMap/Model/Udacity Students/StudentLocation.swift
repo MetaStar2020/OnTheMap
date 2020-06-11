@@ -14,6 +14,7 @@ class StudentLocation {
     struct Auth {
         static var accountKey = ""
         static var sessionId = ""
+        static var objectId: String?
     }
     
     struct PublicUserInfo { //Udacity created an API with random user info to protect privacy
@@ -170,43 +171,6 @@ class StudentLocation {
         task.resume()
     }*/
     
-    class func postStudentLocation() {
-        //Method: https://onthemap-api.udacity.com/v1/StudentLocation
-        
-        var request = URLRequest(url: EndPoints.postStudentLocation.url )
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".data(using: .utf8)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-          if error != nil { // Handle error…
-              return
-          }
-          print(String(data: data!, encoding: .utf8)!)
-        }
-        task.resume()
-    }
-    
-    class func updateStudentLocation(objectId: String) {
-        //required parameters: objectId(String)
-        //Method: https://onthemap-api.udacity.com/v1/StudentLocation/<objectId>
-        // let urlString = "https://onthemap-api.udacity.com/v1/StudentLocation/8ZExGR5uX8"
-        
-        var request = URLRequest(url: EndPoints.updateStudentLocation(objectId).url)
-        request.httpMethod = "PUT"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".data(using: .utf8)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-          if error != nil { // Handle error…
-              return
-          }
-          print(String(data: data!, encoding: .utf8)!)
-        }
-        task.resume()
-    }
-    
-    //MARK: -I am here!
     class func createSessionId(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         let body = SessionRequest(udacity: Student(username: username, password: password))
           taskForPOSTRequest(url: EndPoints.session.url, responseType: SessionResponse.self, body: body) { response, error in
@@ -298,6 +262,20 @@ class StudentLocation {
     }
  */
     
+    class func postStudentLocation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void ) {
+        //Method: https://onthemap-api.udacity.com/v1/StudentLocation
+        //request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".data(using: .utf8)
+        
+        taskForPOSTRequest(url: EndPoints.postStudentLocation.url, responseType: StudentLocationResponse.self, body: body) { response, error in
+            if let response = response {
+                StudentLocation.Auth.objectId = response.objectId
+                print("Student Location created \(response.createdAt)")
+            } else {
+            //handle error...
+            }
+        }
+    }
+    
     class func getPublicUserData(userId: String, completion: @escaping (Bool, Error?) -> Void) {
         //Method Name: https://onthemap-api.udacity.com/v1/users/<user_id>
         //let request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/users/3903878747")!)
@@ -317,6 +295,62 @@ class StudentLocation {
         //print(String(data: newData!, encoding: .utf8)!)
     }
     
+    class func taskForPUTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.httpBody = try! JSONEncoder().encode(body)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    print("error in data its nil")
+                    completion(nil, error)
+                }
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                DispatchQueue.main.async {
+                    completion(responseObject, nil)
+                }
+            } catch {
+                print("error in decoding data - in PUT task")
+                /*do {
+                    let errorResponse = try decoder.decode(TMDBResponse.self, from: data) as Error
+                    DispatchQueue.main.async {
+                        completion(nil, errorResponse)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
+                }*/
+            }
+        }
+        task.resume()
+    }
+    
+    class func updateStudentLocation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
+        //required parameters: objectId(String)
+        //Method: https://onthemap-api.udacity.com/v1/StudentLocation/<objectId>
+        // let urlString = "https://onthemap-api.udacity.com/v1/StudentLocation/8ZExGR5uX8"
+        //var request = URLRequest(url: EndPoints.updateStudentLocation(body.objectId).url)
+        //request.httpMethod = "PUT"
+        //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".data(using: .utf8)
+        
+        taskForPUTRequest(url: EndPoints.updateStudentLocation(body.objectId).url, responseType: StudentLocationUpdateResponse.self, body: body) { response, error in
+            if let response = response {
+                //handle success
+                print("student location updated \(response.updatedAt)")
+            } else {
+                //handle error...
+            }
+        }
+    }
     
     class func logout(completion: @escaping () -> Void) {
         // Method: https://onthemap-api.udacity.com/v1/session

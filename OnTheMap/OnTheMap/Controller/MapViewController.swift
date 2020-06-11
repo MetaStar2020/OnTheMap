@@ -32,6 +32,20 @@ class MapViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.refresh()
+       }
+    
+    @IBAction func refreshTapped(_ sender: UIBarButtonItem) {
+        //refresh mapView
+        self.refresh()
+    }
+    
+    private func refresh() {
+        self.mapView.removeAnnotations(mapView.annotations)
+        self.setUpPins()
+    }
+    
     private func setUpPins() {
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
