@@ -270,7 +270,9 @@ class StudentLocation {
             if let response = response {
                 StudentLocation.Auth.objectId = response.objectId
                 print("Student Location created \(response.createdAt)")
+                completion(true, nil)
             } else {
+                completion(false, error)
             //handle error...
             }
         }
@@ -346,7 +348,9 @@ class StudentLocation {
             if let response = response {
                 //handle success
                 print("student location updated \(response.updatedAt)")
+                completion(true, nil)
             } else {
+                completion(false, error)
                 //handle error...
             }
         }

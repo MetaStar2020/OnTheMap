@@ -26,6 +26,15 @@ class AddLocationViewController: UIViewController {
         
     }
     
+    deinit {
+
+        self.mapView.annotations.forEach{mapView.removeAnnotation($0)}
+
+        self.mapView.delegate = nil
+        
+        print("deinit: AddLocationViewController")
+    }
+    
     
     @IBAction func finishTapped(_ sender: Any) {
         //post online here!
@@ -36,7 +45,6 @@ class AddLocationViewController: UIViewController {
             StudentLocation.postStudentLocation(body: createStudentLocation(), completion: handlePostStudentLocationResponse(success:error:))
             
         }
-        
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
         }
@@ -149,4 +157,5 @@ extension AddLocationViewController: MKMapViewDelegate {
             }
         }
     }
+    
 }
