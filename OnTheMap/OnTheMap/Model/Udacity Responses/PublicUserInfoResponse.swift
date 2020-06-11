@@ -9,15 +9,6 @@
 import Foundation
 
 struct PublicUserInfoResponse: Codable {
-    let user: UserID
-    
-    enum CodingKeys: String, CodingKey {
-        case user
-    }
-
-}
-
-struct UserID: Codable {
     let firstName: String
     let lastName: String
     
@@ -25,4 +16,5 @@ struct UserID: Codable {
         case firstName = "first_name"
         case lastName = "last_name"
     }
+    
 }
