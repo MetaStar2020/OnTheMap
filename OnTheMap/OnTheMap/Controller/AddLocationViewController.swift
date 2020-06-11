@@ -26,6 +26,44 @@ class AddLocationViewController: UIViewController {
         
     }
     
+    
+    @IBAction func finishTapped(_ sender: Any) {
+        //post online here!
+        if StudentLocation.Auth.objectId != nil {
+            StudentLocation.updateStudentLocation(body: createStudentLocation(objectId: StudentLocation.Auth.objectId!), completion: handlePostStudentLocationResponse(success:error:))
+            
+        } else {
+            StudentLocation.postStudentLocation(body: createStudentLocation(), completion: handlePostStudentLocationResponse(success:error:))
+            
+        }
+        
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func handlePostStudentLocationResponse(success: Bool, error: Error?) {
+        if success {
+            //handle success...
+            print("success in HandlePostStudentLocationResponse")
+            StudentLocation.getStudentLocation(limit: 1, order: StudentLocation.EndPoints.order, uniqueKey: StudentLocation.Auth.accountKey) { students, error in
+                print("This is the last updated/created from student \(students)")
+                StudentLocationModel.studentLocations.append(students[0])
+            }
+            
+        } else {
+            print("error in HandlePostStudentLocationResponse")
+            //handle error
+        }
+    }
+    
+    private func createStudentLocation(objectId: String? = nil) -> StudentInformation {
+        
+        return StudentInformation(objectId: objectId ?? "", uniqueKey: StudentLocation.Auth.accountKey, firstName: StudentLocation.PublicUserInfo.firstName, lastName: StudentLocation.PublicUserInfo.lastName, mapString: studentPin.mapString, mediaURL: studentPin.mediaURL, latitude: studentPin.coordinate.latitude, longitude: studentPin.coordinate.longitude, createdAt: "", updatedAt: "")
+        
+    }
+    
+    
     private func setUpPins() {
             
             // We will create an MKPointAnnotation for each dictionary in "locations". The
@@ -101,7 +139,7 @@ extension AddLocationViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             if let mediaURL = view.annotation?.subtitle! {
-                if mediaURL.contains("https"){
+                if mediaURL.contains("https") {
                     if let mediaURL = URL(string: mediaURL){
                         UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
                     }

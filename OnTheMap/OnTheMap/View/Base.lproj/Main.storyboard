@@ -152,7 +152,7 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="icon_refresh" id="oM3-fQ-C3a"/>
+                            <barButtonItem title="refreshButton" image="icon_refresh" id="oM3-fQ-C3a"/>
                             <barButtonItem title="Item" image="icon_pin" id="fS6-mf-oKS">
                                 <connections>
                                     <segue destination="4CL-f6-cUM" kind="presentation" modalPresentationStyle="fullScreen" id="HIo-8j-ysk"/>
@@ -196,7 +196,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="icon_refresh" id="cBL-N0-psc"/>
+                            <barButtonItem title="Item" image="icon_refresh" id="cBL-N0-psc">
+                                <connections>
+                                    <action selector="refreshTapped:" destination="3Bd-El-rt3" id="bH2-hY-2wD"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Item" image="icon_pin" id="2C2-RH-aMA">
                                 <connections>
                                     <segue destination="4CL-f6-cUM" kind="presentation" modalPresentationStyle="fullScreen" id="Kxn-8J-Z3c"/>
@@ -307,6 +311,9 @@
                                     <constraint firstAttribute="height" constant="63" id="T5b-se-OzS"/>
                                 </constraints>
                                 <state key="normal" title="Finish"/>
+                                <connections>
+                                    <action selector="finishTapped:" destination="TcO-JY-gGd" eventType="touchUpInside" id="4Mm-ga-J9p"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14774870870000001" green="0.20547443630000001" blue="0.26276713610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
