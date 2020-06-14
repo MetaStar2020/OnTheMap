@@ -25,7 +25,7 @@ class StudentLocation {
     //MARK: - URLS
     enum EndPoints {
         static let base = "https://onthemap-api.udacity.com/v1"
-        static let order = "?order=-updatedAt"
+        static let order = "-updatedAt"
         
         case getStudentLocation(String)
         case postStudentLocation
