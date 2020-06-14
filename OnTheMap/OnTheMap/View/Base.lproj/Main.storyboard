@@ -35,7 +35,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUy-SZ-5a2" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUy-SZ-5a2" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
                                 <rect key="frame" x="20" y="453" width="374" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -72,6 +72,11 @@
                                     <action selector="signUpTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ma0-5O-puU"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="QYc-mn-rfd">
+                                <rect key="frame" x="197" y="679" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.73636776209999999" blue="0.91892784829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.13304328918457031" green="0.18210351467132568" blue="0.22618207335472107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -103,6 +108,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="QYc-mn-rfd" id="8A0-mj-sSE"/>
                         <outlet property="loginButton" destination="q0p-E4-urI" id="Y1y-i3-e3J"/>
                         <outlet property="signUpButton" destination="RmR-28-jc7" id="Pem-1C-KgV"/>
                         <outlet property="userName" destination="VwO-JK-KCe" id="f9b-v2-X6e"/>
@@ -225,14 +231,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-1024B" translatesAutoresizingMaskIntoConstraints="NO" id="B7S-cF-07z">
-                                <rect key="frame" x="87" y="233" width="240" height="128"/>
+                                <rect key="frame" x="87" y="195" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="3HN-pP-btB"/>
                                     <constraint firstAttribute="height" constant="128" id="CQ2-Qx-yVx"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter Your Location Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PR7-5g-Y4f" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="20" y="421" width="374" height="63"/>
+                                <rect key="frame" x="20" y="383" width="374" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="aa0-y5-P9s"/>
@@ -241,7 +247,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a Link to Share Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="63M-OU-c1B" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
-                                <rect key="frame" x="20" y="492" width="374" height="63"/>
+                                <rect key="frame" x="20" y="454" width="374" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="q8p-TY-0Mu"/>
@@ -250,7 +256,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7w-aU-dYp">
-                                <rect key="frame" x="20" y="563" width="374" height="63"/>
+                                <rect key="frame" x="20" y="525" width="374" height="63"/>
                                 <color key="backgroundColor" red="0.0" green="0.73636776209999999" blue="0.91892784829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="FIND LOCATION"/>
@@ -259,7 +265,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="K08-qd-FoA">
-                                <rect key="frame" x="188.5" y="667" width="37" height="37"/>
+                                <rect key="frame" x="188" y="629" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.73636776209999999" blue="0.91892784829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -268,14 +274,14 @@
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="leading" secondItem="p7w-aU-dYp" secondAttribute="leading" id="4yE-RG-NC9"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="trailing" secondItem="p7w-aU-dYp" secondAttribute="trailing" id="701-hL-C3q"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="leading" secondItem="63M-OU-c1B" secondAttribute="leading" id="84h-Y5-xiD"/>
-                            <constraint firstItem="PR7-5g-Y4f" firstAttribute="top" secondItem="jVO-Lp-R4F" secondAttribute="top" constant="421" id="9vv-m6-bqg"/>
+                            <constraint firstItem="PR7-5g-Y4f" firstAttribute="top" secondItem="jVO-Lp-R4F" secondAttribute="top" constant="383" id="9vv-m6-bqg"/>
                             <constraint firstItem="K08-qd-FoA" firstAttribute="top" secondItem="p7w-aU-dYp" secondAttribute="bottom" constant="41" id="NoV-mi-wPL"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="trailing" secondItem="63M-OU-c1B" secondAttribute="trailing" id="Ttf-B9-t8H"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="trailing" secondItem="jVO-Lp-R4F" secondAttribute="trailingMargin" id="WXc-Lf-vGn"/>
                             <constraint firstItem="63M-OU-c1B" firstAttribute="top" secondItem="PR7-5g-Y4f" secondAttribute="bottom" constant="8" id="XH3-zc-a53"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="centerX" secondItem="B7S-cF-07z" secondAttribute="centerX" id="Yv4-Wr-Sp9"/>
                             <constraint firstItem="K08-qd-FoA" firstAttribute="centerX" secondItem="p7w-aU-dYp" secondAttribute="centerX" id="erK-W0-gTE"/>
-                            <constraint firstItem="mGw-YN-Idw" firstAttribute="bottom" secondItem="p7w-aU-dYp" secondAttribute="bottom" constant="236" id="fXc-5x-4RN"/>
+                            <constraint firstItem="mGw-YN-Idw" firstAttribute="bottom" secondItem="p7w-aU-dYp" secondAttribute="bottom" constant="274" id="fXc-5x-4RN"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="leading" secondItem="jVO-Lp-R4F" secondAttribute="leadingMargin" id="oDu-iL-CUQ"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="top" secondItem="B7S-cF-07z" secondAttribute="bottom" constant="60" id="p7f-JU-nVJ"/>
                             <constraint firstItem="p7w-aU-dYp" firstAttribute="top" secondItem="63M-OU-c1B" secondAttribute="bottom" constant="8" id="wms-4n-Ovr"/>

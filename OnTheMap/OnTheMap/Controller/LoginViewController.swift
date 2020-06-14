@@ -21,6 +21,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -38,7 +40,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func logginTapped(_ sender: Any) {
-        //setLoggingIn(true)
+        setLoggingIn(true)
         StudentLocation.createSessionId(username: userName.text ?? "", password: userPassword.text ?? "", completion: handleSessionResponse(success:error:))
         print(StudentLocation.Auth.sessionId)
     }
@@ -47,15 +49,27 @@ class LoginViewController: UIViewController {
         UIApplication.shared.open(StudentLocation.EndPoints.webAuth.url, options: [:], completionHandler: nil)
     }
     
+    func setLoggingIn(_ loggingIn: Bool) {
+        
+        if loggingIn {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        userName.isEnabled = !loggingIn
+        userPassword.isEnabled = !loggingIn
+        loginButton.isEnabled = !loggingIn
+    
+    }
+    
     func handleSessionResponse(success: Bool, error: Error?) {
-        //setLoggingIn(false)
+        setLoggingIn(false)
         //skip handling to test app
         if success {
             print("Session succeeded! - completeLogin is the next step")
             
             StudentLocation.getPublicUserData(userId: StudentLocation.Auth.accountKey) { success, error in
                 if success {
-                    //handle success
                     print(StudentLocation.PublicUserInfo.firstName)
                 } else {
                     //handle error
