@@ -24,7 +24,7 @@ class MapViewController: UIViewController {
         
         // The "locations" array is an array of dictionary objects that are similar to the JSON
         // data that you can download from parse.
-        let _ = StudentLocation.getStudentLocation() { students, error in
+        let _ = StudentLocation.getStudentLocation(order: StudentLocation.EndPoints.order) { students, error in
             StudentLocationModel.studentLocations = students
             //print("StudentModel: \(String(describing: StudentLocationModel.studentLocations))")
             //print("StudentMOdel error: \(String(describing: error))")

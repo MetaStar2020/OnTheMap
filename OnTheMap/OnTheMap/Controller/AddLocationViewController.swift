@@ -39,9 +39,11 @@ class AddLocationViewController: UIViewController {
     @IBAction func finishTapped(_ sender: Any) {
         //post online here!
         if StudentLocation.Auth.objectId != nil {
+            print("updating via objectId")
             StudentLocation.updateStudentLocation(body: createStudentLocation(objectId: StudentLocation.Auth.objectId!), completion: handlePostStudentLocationResponse(success:error:))
             
         } else {
+            print("posting new student location")
             StudentLocation.postStudentLocation(body: createStudentLocation(), completion: handlePostStudentLocationResponse(success:error:))
             
         }
