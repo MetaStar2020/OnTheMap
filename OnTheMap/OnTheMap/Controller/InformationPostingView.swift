@@ -14,6 +14,8 @@ class InformationPostingView: UIViewController {
     
     @IBOutlet weak var studentLocation: TextField!
     @IBOutlet weak var studentURL: TextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var findLocationButton: UIButton!
     
     var studentPin: StudentPin?
     
@@ -33,16 +35,27 @@ class InformationPostingView: UIViewController {
     
     @IBAction func findLocationTapped(_ sender: Any) {
         //Geocode the mapString
+        self.setGeocodeIn(true)
         print("studentLocation text\(self.studentLocation.text!)")
         self.getCoordinate(addressString: self.studentLocation.text ?? "", completionHandler: { coordinate2D, error  in
             if error == nil {
                 print("coordinate is \(coordinate2D)")
                 self.studentPin = StudentPin(coordinate: coordinate2D, mapString: self.studentLocation.text ?? "", mediaURL:  self.studentURL.text ?? "" )
-                
+                self.setGeocodeIn(false)
                 self.performSegue(withIdentifier: "addLocation", sender: nil)
             }
         })
         
+    }
+    
+    func setGeocodeIn(_ geocodeIn: Bool) {
+        if geocodeIn {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        
+        findLocationButton.isEnabled = !geocodeIn 
     }
     
     func getCoordinate( addressString : String,
