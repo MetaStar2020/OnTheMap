@@ -38,7 +38,7 @@ class StudentLocation {
             switch self {
                 case .getStudentLocation(let query): return EndPoints.base + "/StudentLocation" + query
                 case .postStudentLocation: return EndPoints.base + "/StudentLocation"
-                case .updateStudentLocation(let objectId): return EndPoints.base + "/\(objectId)"
+                case .updateStudentLocation(let objectId): return EndPoints.base + "/StudentLocation/\(objectId)"
                 case .session: return EndPoints.base + "/session"
                 case .getPublicUserData(let userId): return EndPoints.base + "/users/\(userId)"
                 case .webAuth: return "https://auth.udacity.com/sign-up."
@@ -269,6 +269,7 @@ class StudentLocation {
         taskForPOSTRequest(url: EndPoints.postStudentLocation.url, responseType: StudentLocationResponse.self, body: body) { response, error in
             if let response = response {
                 StudentLocation.Auth.objectId = response.objectId
+                print("Student Location objectId: \(response.objectId)")
                 print("Student Location created \(response.createdAt)")
                 completion(true, nil)
             } else {
@@ -344,7 +345,7 @@ class StudentLocation {
         //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         //request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".data(using: .utf8)
         
-        taskForPUTRequest(url: EndPoints.updateStudentLocation(body.objectId).url, responseType: StudentLocationUpdateResponse.self, body: body) { response, error in
+        taskForPUTRequest(url: EndPoints.updateStudentLocation(StudentLocation.Auth.objectId!).url, responseType: StudentLocationUpdateResponse.self, body: body) { response, error in
             if let response = response {
                 //handle success
                 print("student location updated \(response.updatedAt)")
