@@ -25,7 +25,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="     Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwO-JK-KCe" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VwO-JK-KCe" customClass="TextField" customModule="OnTheMap" customModuleProvider="target">
                                 <rect key="frame" x="20" y="382" width="374" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -258,6 +258,10 @@
                                     <action selector="findLocationTapped:" destination="Eik-CD-xVK" eventType="touchUpInside" id="jGA-gS-m1c"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="K08-qd-FoA">
+                                <rect key="frame" x="188.5" y="667" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.73636776209999999" blue="0.91892784829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.14774870872497559" green="0.20547443628311157" blue="0.26276713609695435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -265,10 +269,12 @@
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="trailing" secondItem="p7w-aU-dYp" secondAttribute="trailing" id="701-hL-C3q"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="leading" secondItem="63M-OU-c1B" secondAttribute="leading" id="84h-Y5-xiD"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="top" secondItem="jVO-Lp-R4F" secondAttribute="top" constant="421" id="9vv-m6-bqg"/>
+                            <constraint firstItem="K08-qd-FoA" firstAttribute="top" secondItem="p7w-aU-dYp" secondAttribute="bottom" constant="41" id="NoV-mi-wPL"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="trailing" secondItem="63M-OU-c1B" secondAttribute="trailing" id="Ttf-B9-t8H"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="trailing" secondItem="jVO-Lp-R4F" secondAttribute="trailingMargin" id="WXc-Lf-vGn"/>
                             <constraint firstItem="63M-OU-c1B" firstAttribute="top" secondItem="PR7-5g-Y4f" secondAttribute="bottom" constant="8" id="XH3-zc-a53"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="centerX" secondItem="B7S-cF-07z" secondAttribute="centerX" id="Yv4-Wr-Sp9"/>
+                            <constraint firstItem="K08-qd-FoA" firstAttribute="centerX" secondItem="p7w-aU-dYp" secondAttribute="centerX" id="erK-W0-gTE"/>
                             <constraint firstItem="mGw-YN-Idw" firstAttribute="bottom" secondItem="p7w-aU-dYp" secondAttribute="bottom" constant="236" id="fXc-5x-4RN"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="leading" secondItem="jVO-Lp-R4F" secondAttribute="leadingMargin" id="oDu-iL-CUQ"/>
                             <constraint firstItem="PR7-5g-Y4f" firstAttribute="top" secondItem="B7S-cF-07z" secondAttribute="bottom" constant="60" id="p7f-JU-nVJ"/>
@@ -284,6 +290,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="K08-qd-FoA" id="eMn-UM-Cab"/>
+                        <outlet property="findLocationButton" destination="p7w-aU-dYp" id="dxa-m1-oJE"/>
                         <outlet property="studentLocation" destination="PR7-5g-Y4f" id="5fN-tq-axv"/>
                         <outlet property="studentURL" destination="63M-OU-c1B" id="NNK-gX-rgu"/>
                         <segue destination="TcO-JY-gGd" kind="show" identifier="addLocation" id="mOj-nW-1G5"/>

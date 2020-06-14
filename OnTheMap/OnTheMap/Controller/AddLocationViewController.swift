@@ -40,6 +40,7 @@ class AddLocationViewController: UIViewController {
         //post online here!
         if StudentLocation.Auth.objectId != nil {
             print("updating via objectId")
+            //Student already posted in this session, therefore student location will be updated instead of posted.
             StudentLocation.updateStudentLocation(body: createStudentLocation(objectId: StudentLocation.Auth.objectId!), completion: handlePostStudentLocationResponse(success:error:))
             
         } else {

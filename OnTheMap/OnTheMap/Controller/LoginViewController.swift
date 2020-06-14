@@ -63,6 +63,9 @@ class LoginViewController: UIViewController {
                 }
                 
             }
+            
+            
+            
             performSegue(withIdentifier: "completeLogin", sender: nil)
             
         } else {
