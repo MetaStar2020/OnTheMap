@@ -21,6 +21,12 @@ class AddLocationViewController: UIViewController {
         
         //Set mapView's delegate
         self.mapView.delegate = self
+        
+        //Set CLLocation
+        let clLocation = CLLocation(latitude: studentPin.coordinate.latitude, longitude: studentPin.coordinate.longitude)
+        centerMapOnLocation(clLocation , mapView: self.mapView)
+        
+        //Set Pins
         self.setUpPins()
         
         
@@ -66,6 +72,15 @@ class AddLocationViewController: UIViewController {
             print("error in HandlePostStudentLocationResponse")
             //handle error
         }
+    }
+    
+    func centerMapOnLocation(_ location: CLLocation, mapView: MKMapView) {
+        
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+        
     }
     
     private func createStudentLocation(objectId: String? = nil) -> StudentInformation {
