@@ -20,14 +20,13 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Set MapView's delegate
+        //Set MapView's delegate and properties 
         self.mapView.delegate = self
-        
-        // Do any additional setup after loading the view.
-        print("we're in MapViewController")
+        self.mapView.isZoomEnabled = true
+        self.mapView.isScrollEnabled = true
         
         //Retrieving Student Locations from Udacity's RESTful service
-        StudentLocation.getStudentLocation(order: StudentLocation.EndPoints.order, completion: handleStudentLocations(students:error:))
+        StudentLocation.getStudentLocation(limit: StudentLocation.EndPoints.limit, order: StudentLocation.EndPoints.order, completion: handleStudentLocations(students:error:))
             
     }
     
