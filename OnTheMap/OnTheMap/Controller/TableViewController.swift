@@ -51,15 +51,22 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
        // Configure the cell’s contents.
         cell.imageView!.image = UIImage(named: "icon_pin")
         cell.textLabel!.text = StudentLocationModel.studentLocations[indexPath.row].firstName + " " + StudentLocationModel.studentLocations[indexPath.row].lastName
+        cell.detailTextLabel!.text = StudentLocationModel.studentLocations[indexPath.row].mediaURL
            
        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let mediaURL = URL(string: StudentLocationModel.studentLocations[indexPath.row].mediaURL){
-                UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
-            } else {
-            AlertVC.showMessage(title: "Incorrect URL Format", msg: "Media contains a wrong URL format", on: self)
+            
+            if UIApplication.shared.canOpenURL(mediaURL) && mediaURL.absoluteString.contains("https") {
+               UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
+             } else { //mediaURL does not open
+                AlertVC.showMessage(title: "Cannot Open Link", msg: "Media contains a wrong URL format", on: self)
+            }
+        } else {
+            AlertVC.showMessage(title: "Incorrect URL Format", msg: "There is no URL specified", on: self)
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

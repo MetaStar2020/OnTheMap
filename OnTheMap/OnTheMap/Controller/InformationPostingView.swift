@@ -71,23 +71,28 @@ class InformationPostingView: UIViewController {
     
     func isMediaURLFormat() -> Bool {
         //handle - checking if url starts with 'https://'
-        let typedURL = self.studentURL.text ?? ""
+        if let typedURL = self.studentURL.text, !typedURL.isEmpty {
         
-        if typedURL.starts(with: "https://") {
+            if typedURL.starts(with: "https://") {
             
-            //returns true if the URL is working
-            if verifyUrl(urlString: typedURL) { return true
+                //returns true if the URL is working
+                if verifyUrl(urlString: typedURL) { return true
                 
+                } else {
+                    urlErrorMsg = "URL provided does not work."
+                    return false
+                }
+            
             } else {
-                urlErrorMsg = "URL provided does not work."
+            
+                urlErrorMsg = "URL must begin with 'https://'"
                 return false
+            
             }
             
         } else {
-            
-            urlErrorMsg = "URL must begin with 'https://'"
+            urlErrorMsg = "Please Add a Link."
             return false
-            
         }
     }
     

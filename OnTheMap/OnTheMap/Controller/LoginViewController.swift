@@ -51,6 +51,7 @@ class LoginViewController: UIViewController {
         userName.isEnabled = !loggingIn
         userPassword.isEnabled = !loggingIn
         loginButton.isEnabled = !loggingIn
+        signUpButton.isEnabled = !loggingIn
     
     }
     
