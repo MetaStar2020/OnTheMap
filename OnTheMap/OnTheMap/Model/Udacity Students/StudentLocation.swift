@@ -51,7 +51,7 @@ class StudentLocation {
         
     }
  
-    //MARK: - class functions: GET
+    //MARK: - Class Functions: GET
     
     class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -67,19 +67,17 @@ class StudentLocation {
             
             let decoder = JSONDecoder()
             do {
-                //print("this is the raw data in GET\(String(data: data, encoding: .utf8)!)")
-                
+        
                 if responseType is PublicUserInfoResponse.Type {
                     print("responseType is PublicUserInfoResponse")
                     let range = {5..<data.count}
-                    newData = data.subdata(in: range()) // subset response data! TO CHECK: Range<Int> in documentation
+                    newData = data.subdata(in: range())
                     print(String(data: newData, encoding: .utf8)!)
                 }
                 
                 let responseObject = try decoder.decode(ResponseType.self, from: newData)
                     DispatchQueue.main.async {
                         completion(responseObject, nil)
-                        //print("responseObject is\(responseObject)")
                     }
                 
             } catch {
@@ -105,8 +103,6 @@ class StudentLocation {
     }
     
     class func getPublicUserData(userId: String, completion: @escaping (Bool, Error?) -> Void) {
-        //Method Name: https://onthemap-api.udacity.com/v1/users/<user_id>
-        //let request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/users/3903878747")!)
         
         taskForGETRequest(url: EndPoints.getPublicUserData(userId).url, responseType: PublicUserInfoResponse.self) { response, error in
             if let response = response {
@@ -121,8 +117,7 @@ class StudentLocation {
     }
     
     class func getStudentLocation(limit: Int? = nil, skip: Int? = nil, order: String? = nil, uniqueKey: String? = nil, completion: @escaping ([StudentInformation], Error?) -> Void) {
-        //Optional Parameters: limit(Number), skip(Number), order(String), uniqueKey(String)[aka UserID]
-        //let query = EndPoints.order
+        
         let query = createQuery(limit: limit, skip: skip, order: order, uniqueKey: uniqueKey)
         taskForGETRequest(url: EndPoints.getStudentLocation(query).url, responseType: StudentResults.self) { response, error in
             if let response = response {
@@ -172,7 +167,7 @@ class StudentLocation {
         return query
     }
     
-   //MARK: - class functions: POST
+   //MARK: - Class Functions: POST
     
     class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
         var request = URLRequest(url: url)
@@ -242,8 +237,6 @@ class StudentLocation {
     }
     
     class func postStudentLocation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void ) {
-        //Method: https://onthemap-api.udacity.com/v1/StudentLocation
-        //request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".data(using: .utf8)
         
         taskForPOSTRequest(url: EndPoints.postStudentLocation.url, responseType: StudentLocationResponse.self, body: body) { response, error in
             if let response = response {
@@ -258,7 +251,7 @@ class StudentLocation {
         }
     }
    
-    //MARK: - class functions: PUT
+    //MARK: - Class Functions: PUT
     
     class func taskForPUTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
         var request = URLRequest(url: url)
@@ -299,13 +292,6 @@ class StudentLocation {
     }
     
     class func updateStudentLocation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void) {
-        //required parameters: objectId(String)
-        //Method: https://onthemap-api.udacity.com/v1/StudentLocation/<objectId>
-        // let urlString = "https://onthemap-api.udacity.com/v1/StudentLocation/8ZExGR5uX8"
-        //var request = URLRequest(url: EndPoints.updateStudentLocation(body.objectId).url)
-        //request.httpMethod = "PUT"
-        //request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".data(using: .utf8)
         
         taskForPUTRequest(url: EndPoints.updateStudentLocation(StudentLocation.Auth.objectId!).url, responseType: StudentLocationUpdateResponse.self, body: body) { response, error in
             if let response = response {
@@ -319,10 +305,9 @@ class StudentLocation {
         }
     }
     
-    //MARK: - class functions: others
+    //MARK: - Class Functions: others
     
     class func logout(completion: @escaping () -> Void) {
-        // Method: https://onthemap-api.udacity.com/v1/session
         
         var request = URLRequest(url: EndPoints.session.url)
         request.httpMethod = "DELETE"

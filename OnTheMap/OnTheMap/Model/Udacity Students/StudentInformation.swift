@@ -19,10 +19,8 @@ struct StudentInformation: Codable {
     let latitude: Double?
     let longitude: Double?
     let createdAt: String
-    //Date
     let updatedAt: String
-    //Date
-    //let ACL: ACL
+    
     
     enum CodingKeys: String, CodingKey {
         case objectId
@@ -35,7 +33,6 @@ struct StudentInformation: Codable {
         case longitude
         case createdAt
         case updatedAt
-        //case ACL
     }
     
 }

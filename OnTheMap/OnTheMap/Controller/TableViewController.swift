@@ -16,7 +16,7 @@ class TableViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    //MARK: - Properties: Variables and Constants
+    //MARK: - Class Properties: Variables and Constants
     
     let OTMCellID = "OTMTableCell"
     
@@ -33,8 +33,9 @@ class TableViewController: UIViewController {
         
 }
 
+// MARK: - UITableViewDataSource Functions (required)
+
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
-    // MARK: - Required functions for UITableViewDataSource
     
     // Return the number of rows for the table.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,7 +59,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         if let mediaURL = URL(string: StudentLocationModel.studentLocations[indexPath.row].mediaURL){
                 UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
             } else {
-            //showAlert(ofType: .incorrectURLFormat, message: "Media contains a wrong URL format")
+            AlertVC.showMessage(title: "Incorrect URL Format", msg: "Media contains a wrong URL format", on: self)
         }
     }
 }
