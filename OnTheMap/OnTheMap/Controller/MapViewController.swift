@@ -22,14 +22,9 @@ class MapViewController: UIViewController {
         // Do any additional setup after loading the view.
         print("we're in MapViewController")
         
-        // The "locations" array is an array of dictionary objects that are similar to the JSON
-        // data that you can download from parse.
-        let _ = StudentLocation.getStudentLocation(order: StudentLocation.EndPoints.order) { students, error in
-            StudentLocationModel.studentLocations = students
-            //print("StudentModel: \(String(describing: StudentLocationModel.studentLocations))")
-            //print("StudentMOdel error: \(String(describing: error))")
-            self.setUpPins() //since the download is async - set up needs to be here
-        }
+        //Retrieving Student Locations from Udacity's RESTful service
+        StudentLocation.getStudentLocation(order: StudentLocation.EndPoints.order, completion: handleStudentLocations(students:error:))
+            
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +39,16 @@ class MapViewController: UIViewController {
     private func refresh() {
         self.mapView.removeAnnotations(mapView.annotations)
         self.setUpPins()
+    }
+    
+    func handleStudentLocations(students: [StudentInformation], error: Error? ) {
+        if error != nil {
+            AlertVC.showMessage(title: "Couldn't Retrieve Student Locations", msg: error?.localizedDescription ?? "", on: self)
+        } else {
+            StudentLocationModel.studentLocations = students
+            self.setUpPins() //since the download is async - set up needs to be here
+        }
+        
     }
     
     private func setUpPins() {

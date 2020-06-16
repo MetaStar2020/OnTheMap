@@ -55,7 +55,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="logginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hw4-K8-n42"/>
-                                    <segue destination="1Dy-OZ-ypz" kind="presentation" identifier="completeLogin" modalPresentationStyle="fullScreen" id="2l2-mV-NDE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have any account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNa-Ym-7Kn">
@@ -113,6 +112,7 @@
                         <outlet property="signUpButton" destination="RmR-28-jc7" id="Pem-1C-KgV"/>
                         <outlet property="userName" destination="VwO-JK-KCe" id="f9b-v2-X6e"/>
                         <outlet property="userPassword" destination="iUy-SZ-5a2" id="F1y-3m-UAC"/>
+                        <segue destination="1Dy-OZ-ypz" kind="presentation" identifier="completeLogin" modalPresentationStyle="fullScreen" id="27v-FX-AyB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -265,7 +265,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="K08-qd-FoA">
-                                <rect key="frame" x="188" y="629" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="629" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.73636776209999999" blue="0.91892784829999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -355,6 +355,7 @@
         <scene sceneID="4B7-Q2-nDO">
             <objects>
                 <tabBarController id="1Dy-OZ-ypz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="snu-vH-34P"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IYN-m2-joA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

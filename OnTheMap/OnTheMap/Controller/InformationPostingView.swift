@@ -12,12 +12,19 @@ import CoreLocation
 
 class InformationPostingView: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var studentLocation: TextField!
     @IBOutlet weak var studentURL: TextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var findLocationButton: UIButton!
     
+    //MARK: - Class Properties
+    
     var studentPin: StudentPin?
+    var urlErrorMsg: String = ""
+    
+    //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +40,8 @@ class InformationPostingView: UIViewController {
         }
     }
     
+    //MARK: - IBActions
+    
     @IBAction func findLocationTapped(_ sender: Any) {
         //Geocode the mapString
         self.setGeocodeIn(true)
@@ -40,14 +49,59 @@ class InformationPostingView: UIViewController {
         self.getCoordinate(addressString: self.studentLocation.text ?? "", completionHandler: { coordinate2D, error  in
             if error == nil {
                 print("coordinate is \(coordinate2D)")
-                self.studentPin = StudentPin(coordinate: coordinate2D, mapString: self.studentLocation.text ?? "", mediaURL:  self.studentURL.text ?? "" )
+                
+                //Check if the mediaURL is in correct format before performing Segue
+                if self.isMediaURLFormat() {
+                    self.studentPin = StudentPin(coordinate: coordinate2D, mapString: self.studentLocation.text ?? "", mediaURL:  self.studentURL.text ?? "" )
+                    self.setGeocodeIn(false)
+                    self.performSegue(withIdentifier: "addLocation", sender: nil)
+                } else {
+                    self.setGeocodeIn(false)
+                    AlertVC.showMessage(title: "Incompatible URL Format", msg: self.urlErrorMsg, on: self)
+                }
+            } else {
                 self.setGeocodeIn(false)
-                self.performSegue(withIdentifier: "addLocation", sender: nil)
+                AlertVC.showMessage(title: "Couldn't Find Location", msg: error?.localizedDescription ?? "", on: self)
             }
         })
         
     }
     
+    //MARK: - Internal Class Functions
+    
+    func isMediaURLFormat() -> Bool {
+        //handle - checking if url starts with 'https://'
+        let typedURL = self.studentURL.text ?? ""
+        
+        if typedURL.starts(with: "https://") {
+            
+            //returns true if the URL is working
+            if verifyUrl(urlString: typedURL) { return true
+                
+            } else {
+                urlErrorMsg = "URL provided does not work."
+                return false
+            }
+            
+        } else {
+            
+            urlErrorMsg = "URL must begin with 'https://'"
+            return false
+            
+        }
+    }
+    
+    //Verifying if the URL is openable
+    func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
+    }
+    
+    //Set activity indicator while geocoding
     func setGeocodeIn(_ geocodeIn: Bool) {
         if geocodeIn {
             activityIndicator.startAnimating()
@@ -58,6 +112,7 @@ class InformationPostingView: UIViewController {
         findLocationButton.isEnabled = !geocodeIn 
     }
     
+    //Translate string into coordinates for the mapView
     func getCoordinate( addressString : String,
             completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void ) {
         let geocoder = CLGeocoder()

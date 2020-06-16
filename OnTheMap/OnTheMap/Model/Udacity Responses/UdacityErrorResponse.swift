@@ -1,5 +1,5 @@
 //
-//  StudentResponse.swift
+//  UdacityErrorResponse.swift
 //  OnTheMap
 //
 //  Created by Chantal Deguire on 2020-06-05.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct StudentResponse: Codable {
+struct UdacityErrorResponse: Codable {
     let statusCode: Int
     let statusMessage: String
     
@@ -19,7 +19,7 @@ struct StudentResponse: Codable {
     }
 }
 
-extension StudentResponse: LocalizedError {
+extension UdacityErrorResponse: LocalizedError {
     var errorDescription: String? {
         return statusMessage
     }
