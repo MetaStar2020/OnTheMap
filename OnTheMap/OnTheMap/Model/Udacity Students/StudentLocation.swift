@@ -51,14 +51,14 @@ class StudentLocation {
         
     }
  
-    //MARK: - class functions
+    //MARK: - class functions: GET
     
     class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
                     completion(nil, error)
-                    print("no data was in GET")
+                    print("Data is no longer available.")
                 }
                 return
             }
@@ -86,7 +86,7 @@ class StudentLocation {
                 do {
                     print("responseObject was not decoded")
                      print(error)
-                    let errorResponse = try decoder.decode(StudentResponse.self, from: data) as Error
+                    let errorResponse = try decoder.decode(UdacityErrorResponse.self, from: data) as Error
                     
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
@@ -102,6 +102,22 @@ class StudentLocation {
         task.resume()
         
         return task
+    }
+    
+    class func getPublicUserData(userId: String, completion: @escaping (Bool, Error?) -> Void) {
+        //Method Name: https://onthemap-api.udacity.com/v1/users/<user_id>
+        //let request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/users/3903878747")!)
+        
+        taskForGETRequest(url: EndPoints.getPublicUserData(userId).url, responseType: PublicUserInfoResponse.self) { response, error in
+            if let response = response {
+                completion(true, nil)
+                print("getPublicUserData: \(response)")
+                PublicUserInfo.firstName = response.firstName
+                PublicUserInfo.lastName = response.lastName
+            } else {
+                completion(false, error)
+            }
+        }
     }
     
     class func getStudentLocation(limit: Int? = nil, skip: Int? = nil, order: String? = nil, uniqueKey: String? = nil, completion: @escaping ([StudentInformation], Error?) -> Void) {
@@ -156,37 +172,7 @@ class StudentLocation {
         return query
     }
     
-    /*class func getStudentLocation() {
-        //Optional Parameters: limit(Number), skip(Number), order(String), uniqueKey(String)[aka UserID]
-        //Method: https://onthemap-api.udacity.com/v1/StudentLocation
-        
-        var request = URLRequest(url:  EndPoints.getStudentLocation(EndPoints.order).url)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-          if error != nil { // Handle error...
-              return
-          }
-          print(String(data: data!, encoding: .utf8)!)
-        }
-        task.resume()
-    }*/
-    
-    class func createSessionId(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
-        let body = SessionRequest(udacity: Student(username: username, password: password))
-          taskForPOSTRequest(url: EndPoints.session.url, responseType: SessionResponse.self, body: body) { response, error in
-              if let response = response {
-                print("session succeeded, now adding to Auth...")
-                Auth.sessionId = response.session.id
-                Auth.accountKey = response.account.key
-                print(Auth.sessionId)
-                print(Auth.accountKey)
-                  completion(true, nil)
-              } else {
-                print("no SessionResponse")
-                  completion(false, nil)
-              }
-          }
-      }
+   //MARK: - class functions: POST
     
     class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
         var request = URLRequest(url: url)
@@ -223,8 +209,8 @@ class StudentLocation {
                 }
             } catch {
                 print("error in decoding data")
-                /*do {
-                    let errorResponse = try decoder.decode(TMDBResponse.self, from: data) as Error
+                do {
+                    let errorResponse = try decoder.decode(UdacityErrorResponse.self, from: data) as Error
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
@@ -232,35 +218,28 @@ class StudentLocation {
                     DispatchQueue.main.async {
                         completion(nil, error)
                     }
-                }*/
+                }
             }
         }
         task.resume()
     }
-
-    /*
-    class func createSessionId() {
-        //Method: https://onthemap-api.udacity.com/v1/session
-        //request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: .utf8)
-        
-        var request = URLRequest(url: EndPoints.session.url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        // encoding a JSON body from a string, can also use a Codable struct
-        request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: .utf8)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { data, response, error in
-          if error != nil { // Handle error…
-              return
-          }
-            let range = {5..<data!.count}
-            let newData = data?.subdata(in: range()) /* subset response data! TO CHECK: Range<Int> in documentation */
-          print(String(data: newData!, encoding: .utf8)!)
+    
+    class func createSessionId(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+      let body = SessionRequest(udacity: Student(username: username, password: password))
+        taskForPOSTRequest(url: EndPoints.session.url, responseType: SessionResponse.self, body: body) { response, error in
+            if let response = response {
+              print("session succeeded, now adding to Auth...")
+              Auth.sessionId = response.session.id
+              Auth.accountKey = response.account.key
+              print(Auth.sessionId)
+              print(Auth.accountKey)
+                completion(true, nil)
+            } else {
+              print("no SessionResponse")
+                completion(false, error)
+            }
         }
-        task.resume()
     }
- */
     
     class func postStudentLocation(body: StudentInformation, completion: @escaping (Bool, Error?) -> Void ) {
         //Method: https://onthemap-api.udacity.com/v1/StudentLocation
@@ -278,25 +257,8 @@ class StudentLocation {
             }
         }
     }
-    
-    class func getPublicUserData(userId: String, completion: @escaping (Bool, Error?) -> Void) {
-        //Method Name: https://onthemap-api.udacity.com/v1/users/<user_id>
-        //let request = URLRequest(url: URL(string: "https://onthemap-api.udacity.com/v1/users/3903878747")!)
-        
-        taskForGETRequest(url: EndPoints.getPublicUserData(userId).url, responseType: PublicUserInfoResponse.self) { response, error in
-            if let response = response {
-                completion(true, nil)
-                print("getPublicUserData: \(response)")
-                PublicUserInfo.firstName = response.firstName
-                PublicUserInfo.lastName = response.lastName
-            } else {
-                completion(false, error)
-            }
-        }
-        //let range = {5..<data!.count}
-        //let newData = data?.subdata(in: range()) /* subset response data! */
-        //print(String(data: newData!, encoding: .utf8)!)
-    }
+   
+    //MARK: - class functions: PUT
     
     class func taskForPUTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
         var request = URLRequest(url: url)
@@ -356,6 +318,8 @@ class StudentLocation {
             }
         }
     }
+    
+    //MARK: - class functions: others
     
     class func logout(completion: @escaping () -> Void) {
         // Method: https://onthemap-api.udacity.com/v1/session

@@ -28,12 +28,13 @@
 		C05B709824749CB700E7150A /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709724749CB700E7150A /* FacebookCore */; };
 		C05B709A24749CB700E7150A /* FacebookGamingServices in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709924749CB700E7150A /* FacebookGamingServices */; };
 		C05B709C24749CB700E7150A /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C05B709B24749CB700E7150A /* FacebookLogin */; };
-		C060DA65248AEB4200CFA4A9 /* StudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060DA64248AEB4200CFA4A9 /* StudentResponse.swift */; };
+		C060DA65248AEB4200CFA4A9 /* UdacityErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060DA64248AEB4200CFA4A9 /* UdacityErrorResponse.swift */; };
 		C060DA67248AF82100CFA4A9 /* StudentLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */; };
 		C06F80E524919A23009F1651 /* StudentPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F80E424919A23009F1651 /* StudentPin.swift */; };
 		C06F80E72491AF33009F1651 /* PublicUserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F80E62491AF33009F1651 /* PublicUserInfoResponse.swift */; };
 		C0734B662492D7A000C7A925 /* StudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0734B652492D7A000C7A925 /* StudentLocationResponse.swift */; };
 		C0734B682492E0BA00C7A925 /* StudentLocationUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */; };
+		C07932A1249820FA00AF7199 /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07932A0249820FA00AF7199 /* AlertVC.swift */; };
 		C0802ADB248F09CB005DDD2C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802ADA248F09CB005DDD2C /* TextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,12 +58,13 @@
 		C05430DF246F522200A7D067 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		C0593D33249037910033D7D8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C0593D3524903FA50033D7D8 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
-		C060DA64248AEB4200CFA4A9 /* StudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentResponse.swift; sourceTree = "<group>"; };
+		C060DA64248AEB4200CFA4A9 /* UdacityErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityErrorResponse.swift; sourceTree = "<group>"; };
 		C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationModel.swift; sourceTree = "<group>"; };
 		C06F80E424919A23009F1651 /* StudentPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentPin.swift; sourceTree = "<group>"; };
 		C06F80E62491AF33009F1651 /* PublicUserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserInfoResponse.swift; sourceTree = "<group>"; };
 		C0734B652492D7A000C7A925 /* StudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationResponse.swift; sourceTree = "<group>"; };
 		C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationUpdateResponse.swift; sourceTree = "<group>"; };
+		C07932A0249820FA00AF7199 /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		C0802ADA248F09CB005DDD2C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 				C023EEBA24734940008C4EAA /* InformationPostingView.swift */,
 				C0593D33249037910033D7D8 /* UIViewController+Extension.swift */,
 				C0593D3524903FA50033D7D8 /* AddLocationViewController.swift */,
+				C07932A0249820FA00AF7199 /* AlertVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -149,7 +152,7 @@
 			children = (
 				C023EEB4247345C9008C4EAA /* StudentResults.swift */,
 				C053D2BC247EF4180048A437 /* SessionResponse.swift */,
-				C060DA64248AEB4200CFA4A9 /* StudentResponse.swift */,
+				C060DA64248AEB4200CFA4A9 /* UdacityErrorResponse.swift */,
 				C06F80E62491AF33009F1651 /* PublicUserInfoResponse.swift */,
 				C0734B652492D7A000C7A925 /* StudentLocationResponse.swift */,
 				C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */,
@@ -272,6 +275,7 @@
 				C060DA67248AF82100CFA4A9 /* StudentLocationModel.swift in Sources */,
 				C0802ADB248F09CB005DDD2C /* TextField.swift in Sources */,
 				C06F80E524919A23009F1651 /* StudentPin.swift in Sources */,
+				C07932A1249820FA00AF7199 /* AlertVC.swift in Sources */,
 				C05430E0246F522200A7D067 /* StudentInformation.swift in Sources */,
 				C023EEB5247345C9008C4EAA /* StudentResults.swift in Sources */,
 				C023EEBB24734940008C4EAA /* InformationPostingView.swift in Sources */,
@@ -285,7 +289,7 @@
 				C05430DA246F480B00A7D067 /* StudentLocation.swift in Sources */,
 				C053D2BB247EF1780048A437 /* SessionRequest.swift in Sources */,
 				C053D2BD247EF4180048A437 /* SessionResponse.swift in Sources */,
-				C060DA65248AEB4200CFA4A9 /* StudentResponse.swift in Sources */,
+				C060DA65248AEB4200CFA4A9 /* UdacityErrorResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

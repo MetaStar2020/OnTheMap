@@ -70,6 +70,7 @@ class AddLocationViewController: UIViewController {
             
         } else {
             print("error in HandlePostStudentLocationResponse")
+            AlertVC.showMessage(title: "Couldn't Post Your Location", msg: error?.localizedDescription ?? "", on: self)
             //handle error
         }
     }

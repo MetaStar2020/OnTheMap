@@ -26,15 +26,6 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        /*//need more tweaking here!  hint: maybe I need the delegate?
-        //userName.position(from: userName.beginningOfDocument, offset: 5)
-        if let newPosition = userName.position(from: userName.beginningOfDocument, offset: 15) {
-
-            userName.selectedTextRange = userName.textRange(from: newPosition, to: newPosition)
-        }
-        userPassword.position(from: userName.beginningOfDocument, offset: 5)
-        // check: textField.textRange(from: , to: ) and https://stackoverflow.com/a/34922332 */
-        
         userName.text = ""
         userPassword.text = ""
     }
@@ -84,8 +75,21 @@ class LoginViewController: UIViewController {
             
         } else {
             print("Session failed")
-            //showLoginFailure(message: error?.localizedDescription ?? "")
+            AlertVC.showMessage(title: "Session Failed", msg: error?.localizedDescription ?? "", on: self)
         }
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        //Need to do something here only if its the userPassword Textfield that is selected.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
 
