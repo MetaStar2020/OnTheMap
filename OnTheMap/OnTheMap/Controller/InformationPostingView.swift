@@ -24,7 +24,7 @@ class InformationPostingView: UIViewController {
     var studentPin: StudentPin?
     var urlErrorMsg: String = ""
     
-    //MARK: - Life Cycle
+    //MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,10 +11,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    // Outlets
-    //@IBOutlet weak var userName: UITextField!
-    //@IBOutlet weak var userPassword: UITextField!
-    
+    //MARK: - Outlets
+
     @IBOutlet weak var userName: TextField!
     @IBOutlet weak var userPassword: TextField!
     
@@ -23,6 +21,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -30,6 +29,7 @@ class LoginViewController: UIViewController {
         userPassword.text = ""
     }
     
+    //MARK: - IBActions
     @IBAction func logginTapped(_ sender: Any) {
         setLoggingIn(true)
         StudentLocation.createSessionId(username: userName.text ?? "", password: userPassword.text ?? "", completion: handleSessionResponse(success:error:))
@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
         UIApplication.shared.open(StudentLocation.EndPoints.webAuth.url, options: [:], completionHandler: nil)
     }
     
+    //MARK: - Internal Class Functions
     func setLoggingIn(_ loggingIn: Bool) {
         
         if loggingIn {
@@ -55,26 +56,18 @@ class LoginViewController: UIViewController {
     
     func handleSessionResponse(success: Bool, error: Error?) {
         setLoggingIn(false)
-        //skip handling to test app
         if success {
-            print("Session succeeded! - completeLogin is the next step")
-            
             StudentLocation.getPublicUserData(userId: StudentLocation.Auth.accountKey) { success, error in
                 if success {
                     print(StudentLocation.PublicUserInfo.firstName)
-                } else {
-                    //handle error
-                    print("error with getPublicUserData")
+                } else { //handle error
+                    AlertVC.showMessage(title: "Cannot Get Public User Data", msg: error?.localizedDescription ?? "", on: self)
                 }
                 
             }
-            
-            
-            
             performSegue(withIdentifier: "completeLogin", sender: nil)
             
         } else {
-            print("Session failed")
             AlertVC.showMessage(title: "Session Failed", msg: error?.localizedDescription ?? "", on: self)
         }
     }

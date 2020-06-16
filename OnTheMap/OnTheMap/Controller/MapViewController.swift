@@ -11,7 +11,11 @@ import MapKit
 
 class MapViewController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
+    
+    //MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,8 @@ class MapViewController: UIViewController {
         self.refresh()
        }
     
+    //MARK: - IBActions
+    
     @IBAction func refreshTapped(_ sender: UIBarButtonItem) {
         //refresh mapView
         self.refresh()
@@ -40,6 +46,8 @@ class MapViewController: UIViewController {
         self.mapView.removeAnnotations(mapView.annotations)
         self.setUpPins()
     }
+    
+    //MARK: - Internal Class Functions
     
     func handleStudentLocations(students: [StudentInformation], error: Error? ) {
         if error != nil {
@@ -53,56 +61,40 @@ class MapViewController: UIViewController {
     
     private func setUpPins() {
         
-        // We will create an MKPointAnnotation for each dictionary in "locations". The
-        // point annotations will be stored in this array, and then provided to the map view.
         var annotations = [MKPointAnnotation]()
-        
-        // The "locations" array is loaded with the sample data below. We are using the dictionaries
-        // to create map annotations. This would be more stylish if the dictionaries were being
-        // used to create custom structs. Perhaps StudentLocation structs.
         
         for dictionary in StudentLocationModel.studentLocations {
             
-            // Notice that the float values are being used to create CLLocationDegree values.
-            // This is a version of the Double type.
             let lat = CLLocationDegrees(dictionary.latitude ?? 0.0 )
             let long = CLLocationDegrees(dictionary.longitude ?? 0.0 )
             
             // The lat and long are used to create a CLLocationCoordinates2D instance.
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            //print("coordinate: \(String(describing: coordinate))")
             
             let first = dictionary.firstName
             let last = dictionary.lastName
             let mediaURL = dictionary.mediaURL
             
-            // Here we create the annotation and set its coordiate, title, and subtitle properties
+            // Creating the annotation and setting its coordiate, title, and subtitle properties
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
             annotation.title = "\(first) \(last)"
             annotation.subtitle = mediaURL
             
-            // Finally we place the annotation in an array of annotations.
+            // Adding the annotation in an array of annotations.
             annotations.append(annotation)
             
-            //print("annotation: \(String(describing: annotation.title))")
         }
         
         // When the array is complete, we add the annotations to the map.
         self.mapView.addAnnotations(annotations)
     }
-    
-    //func Handle
-
 }
 
-extension MapViewController: MKMapViewDelegate {
-    
-    // MARK: - MKMapViewDelegate
+  // MARK: - MKMapViewDelegate Funtions (required)
 
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
+extension MapViewController: MKMapViewDelegate {
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -133,7 +125,7 @@ extension MapViewController: MKMapViewDelegate {
                         UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
                     }
                 } else {
-                    //showAlert(ofType: .incorrectURLFormat, message: "Media contains a wrong URL format")
+                    AlertVC.showMessage(title: "Incorrect URL Format", msg: "Media contains a wrong URL format", on: self)
                 }
             }
         }

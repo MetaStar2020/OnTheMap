@@ -1,5 +1,5 @@
 //
-//  AddLocation.swift
+//  AddLocationViewController.swift
 //  OnTheMap
 //
 //  Created by Chantal Deguire on 2020-06-09.
@@ -12,9 +12,15 @@ import MapKit
 
 class AddLocationViewController: UIViewController {
     
+    //MARK: - Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
     
+    //MARK: - Class Properties
+    
     var studentPin: StudentPin!
+    
+    //MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +47,7 @@ class AddLocationViewController: UIViewController {
         print("deinit: AddLocationViewController")
     }
     
+    //MARK: - IBActions
     
     @IBAction func finishTapped(_ sender: Any) {
         //post online here!
@@ -59,22 +66,24 @@ class AddLocationViewController: UIViewController {
         }
     }
     
+    //MARK: - Internal Class Functions
+    
     func handlePostStudentLocationResponse(success: Bool, error: Error?) {
         if success {
-            //handle success...
             print("success in HandlePostStudentLocationResponse")
             StudentLocation.getStudentLocation(limit: 1, order: StudentLocation.EndPoints.order, uniqueKey: StudentLocation.Auth.accountKey) { students, error in
                 print("This is the last updated/created from student \(students)")
                 StudentLocationModel.studentLocations.append(students[0])
             }
             
-        } else {
+        } else { // handle error...
             print("error in HandlePostStudentLocationResponse")
             AlertVC.showMessage(title: "Couldn't Post Your Location", msg: error?.localizedDescription ?? "", on: self)
-            //handle error
+            
         }
     }
     
+    //Zoom in to display student's choosen location prior to finishing
     func centerMapOnLocation(_ location: CLLocation, mapView: MKMapView) {
         
         let regionRadius: CLLocationDistance = 1000
@@ -84,7 +93,8 @@ class AddLocationViewController: UIViewController {
         
     }
     
-    private func createStudentLocation(objectId: String? = nil) -> StudentInformation {
+    //create a StudentInformation struct to pass on
+    func createStudentLocation(objectId: String? = nil) -> StudentInformation {
         
         return StudentInformation(objectId: objectId ?? "", uniqueKey: StudentLocation.Auth.accountKey, firstName: StudentLocation.PublicUserInfo.firstName, lastName: StudentLocation.PublicUserInfo.lastName, mapString: studentPin.mapString, mediaURL: studentPin.mediaURL, latitude: studentPin.coordinate.latitude, longitude: studentPin.coordinate.longitude, createdAt: "", updatedAt: "")
         
@@ -93,54 +103,36 @@ class AddLocationViewController: UIViewController {
     
     private func setUpPins() {
             
-            // We will create an MKPointAnnotation for each dictionary in "locations". The
-            // point annotations will be stored in this array, and then provided to the map view.
         var annotations = [MKPointAnnotation]()
             
-            // The "locations" array is loaded with the sample data below. We are using the dictionaries
-            // to create map annotations. This would be more stylish if the dictionaries were being
-            // used to create custom structs. Perhaps StudentLocation structs.
-            
-            //for dictionary in StudentLocationModel.studentLocations {
-                
-                // Notice that the float values are being used to create CLLocationDegree values.
-                // This is a version of the Double type.
         let lat = CLLocationDegrees( self.studentPin.coordinate.latitude )
         let long = CLLocationDegrees( self.studentPin.coordinate.longitude )
                 
-                // The lat and long are used to create a CLLocationCoordinates2D instance.
+        // The lat and long are used to create a CLLocationCoordinates2D instance.
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        print("coordinate: \(String(describing: coordinate))")
                 
         let first = StudentLocation.PublicUserInfo.firstName
         let last = StudentLocation.PublicUserInfo.lastName
         let mediaURL = self.studentPin.mediaURL
                 
-                // Here we create the annotation and set its coordiate, title, and subtitle properties
+        // Here we create the annotation and set its coordiate, title, and subtitle properties
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = "\(first) \(last)"
         annotation.subtitle = mediaURL
                 
-                // Finally we place the annotation in an array of annotations.
+        // Finally we place the annotation in an array of annotations.
         annotations.append(annotation)
-                
-        print("annotation: \(String(describing: annotation.title))")
             
-            // When the array is complete, we add the annotations to the map.
+        // When the array is complete, we add the annotations to the map.
         self.mapView.addAnnotations(annotations)
-        //}
     }
-        //func Handle
 }
 
-// MARK: - MKMapViewDelegate
+// MARK: - MKMapViewDelegate Functions (required)
 
 extension AddLocationViewController: MKMapViewDelegate {
 
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -159,7 +151,6 @@ extension AddLocationViewController: MKMapViewDelegate {
         
         return pinView
     }
-
     
     // This delegate method is implemented to respond to taps. It opens the system browser
     // to the URL specified in the annotationViews subtitle property.
@@ -171,7 +162,7 @@ extension AddLocationViewController: MKMapViewDelegate {
                         UIApplication.shared.open(mediaURL, options: [:], completionHandler: nil)
                     }
                 } else {
-                    //showAlert(ofType: .incorrectURLFormat, message: "Media contains a wrong URL format")
+                    AlertVC.showMessage(title: "Incorrect URL Format", msg: "Media contains a wrong URL format", on: self)
                 }
             }
         }

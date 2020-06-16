@@ -20,7 +20,6 @@
 		C05430CC246F431A00A7D067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C05430CB246F431A00A7D067 /* Assets.xcassets */; };
 		C05430CF246F431A00A7D067 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05430CD246F431A00A7D067 /* LaunchScreen.storyboard */; };
 		C05430DA246F480B00A7D067 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430D9246F480B00A7D067 /* StudentLocation.swift */; };
-		C05430DE246F4B3400A7D067 /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430DD246F4B3400A7D067 /* ACL.swift */; };
 		C05430E0246F522200A7D067 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05430DF246F522200A7D067 /* StudentInformation.swift */; };
 		C0593D34249037910033D7D8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0593D33249037910033D7D8 /* UIViewController+Extension.swift */; };
 		C0593D3624903FA50033D7D8 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0593D3524903FA50033D7D8 /* AddLocationViewController.swift */; };
@@ -54,7 +53,6 @@
 		C05430CE246F431A00A7D067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C05430D0246F431A00A7D067 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C05430D9246F480B00A7D067 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
-		C05430DD246F4B3400A7D067 /* ACL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACL.swift; sourceTree = "<group>"; };
 		C05430DF246F522200A7D067 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		C0593D33249037910033D7D8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C0593D3524903FA50033D7D8 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 		C05430E4246F55DD00A7D067 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				C05430DD246F4B3400A7D067 /* ACL.swift */,
 				C060DA66248AF82100CFA4A9 /* StudentLocationModel.swift */,
 				C0802ADA248F09CB005DDD2C /* TextField.swift */,
 				C06F80E424919A23009F1651 /* StudentPin.swift */,
@@ -285,7 +282,6 @@
 				C0734B682492E0BA00C7A925 /* StudentLocationUpdateResponse.swift in Sources */,
 				C0593D3624903FA50033D7D8 /* AddLocationViewController.swift in Sources */,
 				C05430C5246F431900A7D067 /* SceneDelegate.swift in Sources */,
-				C05430DE246F4B3400A7D067 /* ACL.swift in Sources */,
 				C05430DA246F480B00A7D067 /* StudentLocation.swift in Sources */,
 				C053D2BB247EF1780048A437 /* SessionRequest.swift in Sources */,
 				C053D2BD247EF4180048A437 /* SessionResponse.swift in Sources */,
