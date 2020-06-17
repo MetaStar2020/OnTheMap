@@ -35,6 +35,7 @@
 		C0734B682492E0BA00C7A925 /* StudentLocationUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */; };
 		C07932A1249820FA00AF7199 /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07932A0249820FA00AF7199 /* AlertVC.swift */; };
 		C0802ADB248F09CB005DDD2C /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802ADA248F09CB005DDD2C /* TextField.swift */; };
+		C0F9B00A249ACF6700DA0456 /* FBSessionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F9B009249ACF6700DA0456 /* FBSessionRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		C0734B672492E0BA00C7A925 /* StudentLocationUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationUpdateResponse.swift; sourceTree = "<group>"; };
 		C07932A0249820FA00AF7199 /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		C0802ADA248F09CB005DDD2C /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		C0F9B009249ACF6700DA0456 /* FBSessionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBSessionRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				C053D2BA247EF1780048A437 /* SessionRequest.swift */,
+				C0F9B009249ACF6700DA0456 /* FBSessionRequest.swift */,
 			);
 			path = "Udacity Requests";
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0F9B00A249ACF6700DA0456 /* FBSessionRequest.swift in Sources */,
 				C0593D34249037910033D7D8 /* UIViewController+Extension.swift in Sources */,
 				C023EEB92473492A008C4EAA /* LoginViewController.swift in Sources */,
 				C05430C7246F431900A7D067 /* MapViewController.swift in Sources */,
