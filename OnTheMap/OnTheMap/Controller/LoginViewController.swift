@@ -22,21 +22,27 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK: - Class Properties
+    let fbLoginButton = FBLoginButton()
+    
     //MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Log out first in case it is logged in before
+        let fbLoginManager : LoginManager = LoginManager()
+        fbLoginManager.logOut()
+        
         //Set up FBLogin Button
-        let fbLoginButton = FBLoginButton()
         fbLoginButton.center = view.center
         view.addSubview(fbLoginButton)
+        //self.setupFacebookButton()
         
         if let token = AccessToken.current,
             !token.isExpired {
             // User is logged in, do work such as go to next view controller.
-            StudentLocation.Auth.accountKey = AccessToken.current!.tokenString
-            self.handleSessionResponse(success: true, error: nil)
+            StudentLocation.createFBSessionId(fbToken: AccessToken.current!.tokenString, completion: self.handleSessionResponse(success:error:))
             
         }
         
@@ -51,8 +57,9 @@ class LoginViewController: UIViewController {
             if let token = AccessToken.current,
                 !token.isExpired {
                 // User is logged in, do work such as go to next view controller.
-                StudentLocation.Auth.accountKey = AccessToken.current!.tokenString
-                self.handleSessionResponse(success: true, error: nil)
+                //StudentLocation.Auth.accountKey = AccessToken.current!.tokenString
+                StudentLocation.createFBSessionId(fbToken: AccessToken.current!.tokenString, completion: self.handleSessionResponse(success:error:))
+                //self.handleSessionResponse(success: true, error: nil)
                 
             }
         }
@@ -123,6 +130,80 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+}
+
+//FBLogin Delegate
+extension LoginViewController: LoginButtonDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        print("Did log out of facebook")
+    }
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if error != nil {
+            AlertVC.showMessage(title: "Facebook Login Failed", msg: error?.localizedDescription ?? "", on: self)
+            return
+        }
+        
+        //self.performFBLogin(result!.token!.tokenString)
+    }
+    
+    /*func performFBLogin(_ fbToken: String) {
+        StudentLocation.sharedInstance().performFacebookLogin(fbToken, completionHandlerFBLogin: { (error) in
+            
+            if (error == nil) {
+                
+                // Get User Info
+                self.getCurrentUserInfo()
+                
+                // Complete Login
+                performSegue(withIdentifier: "completeLogin", sender: nil)
+            }
+            else {
+                AlertVC.showMessage(title: "Invalid Login or Password", msg: error?.localizedDescription ?? "", on: self)
+            }
+        })
+    }*/
+    
+    func setupFacebookButton() {
+        NSLayoutConstraint(item: fbLoginButton,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .centerXWithinMargins,
+                           multiplier: 1.0,
+                           constant: 0)
+            .isActive = false
+        
+        NSLayoutConstraint(item: fbLoginButton,
+                           attribute: .leading,
+                           relatedBy: .equal,
+                           toItem: self.loginButton,
+                           attribute: .leading,
+                           multiplier: 1.0,
+                           constant: 20)
+            .isActive = false
+        
+        NSLayoutConstraint(item: fbLoginButton,
+                           attribute: .top,
+                           relatedBy: .equal,
+                           toItem: self.loginButton,
+                           attribute: .bottom,
+                           multiplier: 1.0,
+                           constant: -20)
+            .isActive = true
+        
+        NSLayoutConstraint(item: fbLoginButton,
+                           attribute: .trailing,
+                           relatedBy: .equal,
+                           toItem: self.loginButton,
+                           attribute: .trailing,
+                           multiplier: 1.0,
+                           constant: 0)
+            .isActive = false
+        
+        fbLoginButton.delegate = self
     }
     
 }

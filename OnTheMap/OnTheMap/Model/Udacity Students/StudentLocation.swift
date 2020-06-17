@@ -221,10 +221,29 @@ class StudentLocation {
     }
     
     class func createSessionId(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
-      let body = SessionRequest(udacity: Student(username: username, password: password))
+        
+        let body = SessionRequest(udacity: Student(username: username, password: password))
         taskForPOSTRequest(url: EndPoints.session.url, responseType: SessionResponse.self, body: body) { response, error in
             if let response = response {
               print("session succeeded, now adding to Auth...")
+              Auth.sessionId = response.session.id
+              Auth.accountKey = response.account.key
+              print(Auth.sessionId)
+              print(Auth.accountKey)
+                completion(true, nil)
+            } else {
+              print("no SessionResponse")
+                completion(false, error)
+            }
+        }
+    }
+    
+    class func createFBSessionId(fbToken: String, completion: @escaping (Bool, Error?) -> Void) {
+        
+        let body = FBSessionRequest(facebookMobile: FBAccessToken(accessToken: fbToken))
+        taskForPOSTRequest(url: EndPoints.session.url, responseType: SessionResponse.self, body: body) { response, error in
+            if let response = response {
+              print("facebook-udacity session succeeded, now adding to Auth...")
               Auth.sessionId = response.session.id
               Auth.accountKey = response.account.key
               print(Auth.sessionId)
