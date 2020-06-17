@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -22,11 +23,50 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: - View Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Set up FBLogin Button
+        let fbLoginButton = FBLoginButton()
+        fbLoginButton.center = view.center
+        view.addSubview(fbLoginButton)
+        
+        if let token = AccessToken.current,
+            !token.isExpired {
+            // User is logged in, do work such as go to next view controller.
+            StudentLocation.Auth.accountKey = AccessToken.current!.tokenString
+            self.handleSessionResponse(success: true, error: nil)
+            
+        }
+        
+        // Observe access token changes
+        // This will trigger after successfully login / logout
+        NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (notification) in
+            
+            // Print out access token
+            print("FB Access Token: \(String(describing: AccessToken.current?.tokenString))")
+            
+            //If student has signed in via Facebook
+            if let token = AccessToken.current,
+                !token.isExpired {
+                // User is logged in, do work such as go to next view controller.
+                StudentLocation.Auth.accountKey = AccessToken.current!.tokenString
+                self.handleSessionResponse(success: true, error: nil)
+                
+            }
+        }
+        
+    
+    }
+        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         userName.text = ""
         userPassword.text = ""
+        
     }
     
     //MARK: - IBActions
