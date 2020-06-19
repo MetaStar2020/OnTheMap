@@ -21,9 +21,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    //MARK: - Class Properties
-    let fbLoginButton = FBLoginButton()
+
+    @IBOutlet weak var fbLoginButton: FBLoginButton!
     
     //MARK: - View Life Cycle
     
@@ -35,13 +34,13 @@ class LoginViewController: UIViewController {
         fbLoginManager.logOut()
         
         //Set up FBLogin Button
-        fbLoginButton.center = view.center
-        view.addSubview(fbLoginButton)
-        //self.setupFacebookButton()
+        fbLoginButton.delegate = self
+        
         
         if let token = AccessToken.current,
             !token.isExpired {
-            // User is logged in, do work such as go to next view controller.
+            // User is logged into Facebook
+            print("createFBSession 1")
             StudentLocation.createFBSessionId(fbToken: AccessToken.current!.tokenString, completion: self.handleSessionResponse(success:error:))
             
         }
@@ -56,10 +55,10 @@ class LoginViewController: UIViewController {
             //If student has signed in via Facebook
             if let token = AccessToken.current,
                 !token.isExpired {
-                // User is logged in, do work such as go to next view controller.
-                //StudentLocation.Auth.accountKey = AccessToken.current!.tokenString
+                
+                // User is logged into Facebook
+                print("createFBSession 2")
                 StudentLocation.createFBSessionId(fbToken: AccessToken.current!.tokenString, completion: self.handleSessionResponse(success:error:))
-                //self.handleSessionResponse(success: true, error: nil)
                 
             }
         }
@@ -149,6 +148,8 @@ extension LoginViewController: LoginButtonDelegate {
         //self.performFBLogin(result!.token!.tokenString)
     }
     
+    //NOTE: No mentor could assist on how to connect the facebook login to the Udacity's account...
+    //This is disabled til resolved
     /*func performFBLogin(_ fbToken: String) {
         StudentLocation.sharedInstance().performFacebookLogin(fbToken, completionHandlerFBLogin: { (error) in
             
@@ -166,45 +167,6 @@ extension LoginViewController: LoginButtonDelegate {
         })
     }*/
     
-    func setupFacebookButton() {
-        NSLayoutConstraint(item: fbLoginButton,
-                           attribute: .centerX,
-                           relatedBy: .equal,
-                           toItem: view,
-                           attribute: .centerXWithinMargins,
-                           multiplier: 1.0,
-                           constant: 0)
-            .isActive = false
-        
-        NSLayoutConstraint(item: fbLoginButton,
-                           attribute: .leading,
-                           relatedBy: .equal,
-                           toItem: self.loginButton,
-                           attribute: .leading,
-                           multiplier: 1.0,
-                           constant: 20)
-            .isActive = false
-        
-        NSLayoutConstraint(item: fbLoginButton,
-                           attribute: .top,
-                           relatedBy: .equal,
-                           toItem: self.loginButton,
-                           attribute: .bottom,
-                           multiplier: 1.0,
-                           constant: -20)
-            .isActive = true
-        
-        NSLayoutConstraint(item: fbLoginButton,
-                           attribute: .trailing,
-                           relatedBy: .equal,
-                           toItem: self.loginButton,
-                           attribute: .trailing,
-                           multiplier: 1.0,
-                           constant: 0)
-            .isActive = false
-        
-        fbLoginButton.delegate = self
-    }
     
 }
 
