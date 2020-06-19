@@ -123,7 +123,7 @@ class StudentLocation {
         taskForGETRequest(url: EndPoints.getStudentLocation(query).url, responseType: StudentResults.self) { response, error in
             if let response = response {
                 completion(response.results, nil)
-                //print("getStudentLocation results: \(response.results)")
+                //-- to test, remove comment -- print("getStudentLocation results: \(response.results)")
             } else {
                 completion([], error)
             }
@@ -204,7 +204,7 @@ class StudentLocation {
                     completion(responseObject, nil)
                 }
             } catch {
-                print("error in decoding data")
+                print("error in decoding data - in POST task")
                 do {
                     let errorResponse = try decoder.decode(UdacityErrorResponse.self, from: data) as Error
                     DispatchQueue.main.async {
@@ -264,9 +264,8 @@ class StudentLocation {
                 print("Student Location objectId: \(response.objectId)")
                 print("Student Location created \(response.createdAt)")
                 completion(true, nil)
-            } else {
+            } else { //handle error...
                 completion(false, error)
-            //handle error...
             }
         }
     }
@@ -296,8 +295,8 @@ class StudentLocation {
                 }
             } catch {
                 print("error in decoding data - in PUT task")
-                /*do {
-                    let errorResponse = try decoder.decode(TMDBResponse.self, from: data) as Error
+                do {
+                    let errorResponse = try decoder.decode(UdacityErrorResponse.self, from: data) as Error
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
@@ -305,7 +304,7 @@ class StudentLocation {
                     DispatchQueue.main.async {
                         completion(nil, error)
                     }
-                }*/
+                }
             }
         }
         task.resume()
