@@ -13,6 +13,9 @@ On the Map is a simple app that allows Udacity Students to add their location on
 
 <p align="row">
 <img src= "https://media.giphy.com/media/LePuCPCyRlbmMY7T09/giphy.gif" width="200" >
+  <img src= "https://media.giphy.com/media/eI9v7HuxdDO0PtlEuF/giphy.gif" width="200" >
+  <img src= "https://media.giphy.com/media/p4dXlux45SuJ6jXUPs/giphy.gif" width="200" >
+  <img src= "https://media.giphy.com/media/kKqpKCNdLaU6LBy06B/giphy.gif" width="200" >
 </p>
 
 ## Motivation
